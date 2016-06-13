@@ -16,7 +16,7 @@ int main() {
         FlowRoute route;
 
 
-        set<string> seta = {"tcp", "udp"};
+        set<string> seta = {"tcp"};
         Protocol prot(seta);
 
         DestinationAddress dest("134.96.43.11/24");
@@ -26,6 +26,7 @@ int main() {
 
 
         route.setDestination_address(&dest);
+        route.setProtocol(&prot);
         route.setFilter_action(&discard);
 
         cout << route.toString() << "\n";

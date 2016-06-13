@@ -3,14 +3,15 @@
 //
 
 #include "Protocol.h"
+#include "../exceptions/FlowRouteException.h"
 
 Protocol::Protocol(set<string> setValue) : AbstractFlowRouteField(setValue) {
-    if (std::includes(setValue.begin(), setValue.end(),
-                      this->allowedProt.begin(), this->allowedProt.end())) {
+    if (std::includes(this->allowedProt.begin(), this->allowedProt.end(),
+                      setValue.begin(), setValue.end())) {
         return;
     }
 
-    throw "Noo";
+    throw FlowRouteException("Invalid values for this parameter!");
 }
 
 

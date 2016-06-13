@@ -25,7 +25,7 @@ private:
     AbstractFlowRouteField* port; //TODO
     AbstractFlowRouteField* source_port; //TODO
     AbstractFlowRouteField* destination_port; //TODO
-    AbstractFlowRouteField*icmp_type; //TODO
+    AbstractFlowRouteField* icmp_type; //TODO
     AbstractFlowRouteField* icmp_code; //TODO
     AbstractFlowRouteField* tcp_flags; //TODO
     AbstractFlowRouteField* packet_length; //TODO
@@ -66,6 +66,14 @@ public:
         FlowRoute::destination_address = destination_address;
     }
 
+
+    Protocol *getProtocol() const {
+        return protocol;
+    }
+
+    void setProtocol(Protocol *protocol) {
+        FlowRoute::protocol = protocol;
+    }
 
     AbstractFlowRouteAction *getFilter_action() const {
         return filter_action;
