@@ -4,6 +4,7 @@
 #include "flowroute/fields/SourceAddress.h"
 #include "flowroute/fields/Protocol.h"
 #include "flowroute/fields/DISCARD.h"
+#include "flowroute/fields/RATELIMIT.h"
 
 
 using namespace std;
@@ -23,11 +24,12 @@ int main() {
 
         SourceAddress src("8.8.8.8/32");
         DISCARD discard(&src);
+        RATELIMIT ratelimit(&src, 10000);
 
 
         route.setDestination_address(&dest);
         route.setProtocol(&prot);
-        route.setFilter_action(&discard);
+        route.setFilter_action(&ratelimit);
 
         cout << route.toString() << "\n";
 

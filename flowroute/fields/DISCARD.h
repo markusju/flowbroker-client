@@ -14,7 +14,7 @@ class DISCARD : public AbstractFlowRouteAction {
 public:
     virtual string getMethod() const;
 
-    DISCARD(SourceAddress* destinationAddress);
+    DISCARD(SourceAddress* sourceAddress);
 
 private:
     SourceAddress* sourceAddress;
