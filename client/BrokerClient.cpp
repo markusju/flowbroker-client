@@ -5,19 +5,18 @@
 #include "BrokerClient.h"
 
 BrokerClient::BrokerClient(string host, int port) {
+    this->host = host;
+    this->port = port;
 
 }
 
-BrokerReply BrokerClient::sendRequest(BrokerRequest *request) {
+string BrokerClient::sendRequest(string request) {
     this->connect();
-
-    this->client.send_data(request->toString());
+    this->client.send_data(request);
     string output = this->client.receive(2048);
-
-
-
     this->disconnect();
 
+    return output;
 }
 
 void BrokerClient::connect() {

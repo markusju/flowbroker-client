@@ -27,7 +27,7 @@ string BrokerRequest::toString() const {
         output.append(el.first + ": " + el.second);
     }
 
-    output.append("\n");
+    output.append("\n\n");
 
     return output;
 }

@@ -6,6 +6,8 @@
 #include "flowroute/fields/DISCARD.h"
 #include "flowroute/fields/RATELIMIT.h"
 #include "protocol/parser/BrokerReplyParser.h"
+#include "client/BrokerClient.h"
+#include "protocol/BrokerProtocol.h"
 
 
 
@@ -17,18 +19,13 @@ using namespace std;
 
 int main() {
 
-
-
-    BrokerReplyParser replyParser("200 ASDKJALKJS\naasdas: asd\nasdk: asd\n\n");
-
-    BrokerReply reply = replyParser.evaluate();
-
-
-
     try {
+        BrokerClient client("127.0.0.1", 5653);
+        BrokerReplyParser parser;
+        BrokerReplyEvaluator evaluator;
+        BrokerProtocol protocol(&client, &parser, &evaluator);
 
         FlowRoute route;
-
 
         set<string> seta = {"tcp"};
         Protocol prot(seta);
@@ -44,9 +41,9 @@ int main() {
         route.setProtocol(&prot);
         route.setFilter_action(&ratelimit);
 
-        cout << route.toString() << "\n";
+        BrokerRequest req = route.parseToRequest();
 
-
+        protocol.send(&req);
 
 
     } catch(exception& exc) {
