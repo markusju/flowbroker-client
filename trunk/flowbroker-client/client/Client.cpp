@@ -69,7 +69,6 @@ bool Client::conn(string address, int port) {
         return 1;
     }
 
-    cout<<"Connected\n";
     return true;
 }
 
@@ -86,13 +85,12 @@ bool Client::send_data(string data) {
         perror("Send failed : ");
         return false;
     }
-    cout<<"Data send\n";
 
     return true;
 }
 
-string Client::receive(int size=512) {
-    vector<char> buffer(1025);
+string Client::receive(int size) {
+    vector<char> buffer(size);
 
     //Receive a reply from the server
     if( recv(sock , buffer.data() , buffer.size() -1 , 0) < 0)
@@ -100,7 +98,7 @@ string Client::receive(int size=512) {
         puts("recv failed");
     }
 
-    string reply(buffer.begin(), buffer.end());
+    string reply(buffer.data());
     return reply;
 }
 

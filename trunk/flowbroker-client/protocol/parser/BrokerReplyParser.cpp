@@ -55,8 +55,8 @@ BrokerReply BrokerReplyParser::evaluate(string input) {
     //PARAMETERS
     while(getline(inputstream, line)) { //Parameters
         //Exit Condition...
-        if (line.) break;
-        cout << line.length() << "   ";
+        if (line.empty()) break;
+        //cout << "LENGTH:" << line.length() << "VALUE:" << line << "DATA" << line.data() << "\n" ;
 
         vector<string> elems = this->split(line, ':');
 
