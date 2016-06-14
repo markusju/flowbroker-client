@@ -39,7 +39,7 @@ int main() {
 
         route.setDestination_address(&dest);
         route.setProtocol(&prot);
-        route.setFilter_action(&ratelimit);
+        route.setFilter_action(&discard);
 
         BrokerRequest req = route.parseToRequest();
 

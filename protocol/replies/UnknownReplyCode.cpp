@@ -11,7 +11,13 @@ UnknownReplyCode::UnknownReplyCode(int code) {
         case 1:
             throw BrokerReplyEvaluationErrorException("Code 1XX not (yet) implemented!");
         case 2:
+            break; //Permitted
+        case 3:
             throw BrokerReplyEvaluationErrorException("Code 3XX not (yet) implemented!");
+        case 4:
+            break; //Permitted
+        case 5:
+            break; //Permitted
         default:
             throw BrokerReplyEvaluationErrorException("Code not implemented!");
     }
