@@ -7,6 +7,7 @@
 #include <vector>
 #include "Client.h"
 #include <cstring>
+#include <unistd.h>
 
 using namespace std;
 
