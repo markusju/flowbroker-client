@@ -5,11 +5,24 @@
 #include "flowroute/fields/Protocol.h"
 #include "flowroute/fields/DISCARD.h"
 #include "flowroute/fields/RATELIMIT.h"
+#include "protocol/parser/BrokerReplyParser.h"
 
+
+
+/**
+ * Reference Implementation for the Broker Protocol
+ */
 
 using namespace std;
 
 int main() {
+
+
+
+    BrokerReplyParser replyParser("200 ASDKJALKJS\naasdas: asd\nasdk: asd\n\n");
+
+    BrokerReply reply = replyParser.evaluate();
+
 
 
     try {
@@ -41,9 +54,7 @@ int main() {
     }
 
 
-
-
-    /**
+    /*
     Client client;
     string host;
 
@@ -52,6 +63,7 @@ int main() {
     client.send_data("DISCARD 8.8.8.8/32\nPort: =80;>70&<100\n\n");
 
     cout << client.receive(1024);
-    */
+     */
+
     return 0;
 }

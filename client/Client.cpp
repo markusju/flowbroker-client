@@ -2,8 +2,6 @@
 // Created by Markus Jungbluth on 09.06.16.
 //
 
-
-
 #include <iostream>
 #include <netdb.h>
 #include "Client.h"
@@ -101,4 +99,12 @@ string Client::receive(int size=512) {
 
     reply = buffer;
     return reply;
+}
+
+Client::~Client() {
+    this->disconn();
+}
+
+void Client::disconn() {
+    close(this->sock);
 }

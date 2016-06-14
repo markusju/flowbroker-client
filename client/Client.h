@@ -23,7 +23,9 @@ private:
 
 public:
     Client();
+    virtual ~Client();
     bool conn(string address, int port);
+    void disconn();
     bool send_data(string data);
     string receive(int);
 };

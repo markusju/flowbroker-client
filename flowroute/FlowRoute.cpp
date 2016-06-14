@@ -10,84 +10,108 @@ FlowRoute::FlowRoute() {
 }
 
 string FlowRoute::toString() const {
-    return this->parse();
+    return this->parseToRequest().toString();
 }
 
-string FlowRoute::parse() const {
-    this->checkAction();
-    this->checkMatchCriteria();
 
-    string output;
-    output.reserve(8192);
 
-    output.append(this->filter_action->toString());
-    output.append("\n");
 
+void FlowRoute::parsePreChecks() const {
+    if (this->filter_action == NULL) throw FlowRouteException("Pre Check failed: No Filter Action specified.");
+}
+
+
+void FlowRoute::parsePostChecks(BrokerRequest& request) const {
+    //FUTURE USE...
+    //TODO
+}
+
+BrokerRequest FlowRoute::parseToRequest() const {
+    this->parsePreChecks();
+
+    BrokerRequest request(this->filter_action->getMethod());
+
+    for (auto el : this->filter_action->getMethodArguments()) {
+        request.addRequestArgument(el);
+    }
 
     if (this->destination_address != NULL) {
-        output.append(this->destination_address->toString());
-        output.append("\n");
+        request.addParameter(
+                this->destination_address->getKey(),
+                this->destination_address->getValue()
+        );
     }
 
     if (this->protocol != NULL) {
-        output.append(this->protocol->toString());
-        output.append("\n");
+        request.addParameter(
+                this->protocol->getKey(),
+                this->protocol->getValue()
+        );
     }
 
     if (this->port != NULL) {
-        output.append(this->protocol->toString());
-        output.append("\n");
+        request.addParameter(
+                this->port->getKey(),
+                this->port->getValue()
+        );
     }
 
     if (this->destination_port != NULL) {
-        output.append(this->destination_port->toString());
-        output.append("\n");
+        request.addParameter(
+                this->destination_port->getKey(),
+                this->destination_port->getValue()
+        );
     }
 
     if (this->source_port != NULL) {
-        output.append(this->source_port->toString());
-        output.append("\n");
+        request.addParameter(
+                this->source_port->getKey(),
+                this->source_port->getValue()
+        );
     }
 
     if (this->icmp_type != NULL) {
-        output.append(this->icmp_type->toString());
-        output.append("\n");
+        request.addParameter(
+                this->icmp_type->getKey(),
+                this->icmp_type->getValue()
+        );
     }
 
     if (this->icmp_code != NULL) {
-        output.append(this->icmp_code->toString());
-        output.append("\n");
+        request.addParameter(
+                this->icmp_code->getKey(),
+                this->icmp_code->getValue()
+        );
     }
 
     if (this->tcp_flags != NULL) {
-        output.append(this->tcp_flags->toString());
-        output.append("\n");
+        request.addParameter(
+                this->tcp_flags->getKey(),
+                this->tcp_flags->getValue()
+        );
     }
 
     if (this->packet_length != NULL) {
-        output.append(this->packet_length->toString());
-        output.append("\n");
+        request.addParameter(
+                this->packet_length->getKey(),
+                this->packet_length->getValue()
+        );
     }
 
     if (this->dscp != NULL) {
-        output.append(this->dscp->toString());
-        output.append("\n");
+        request.addParameter(
+                this->dscp->getKey(),
+                this->dscp->getValue()
+        );
     }
 
     if (this->fragment != NULL) {
-        output.append(this->fragment->toString());
-        output.append("\n");
+        request.addParameter(
+                this->fragment->getKey(),
+                this->fragment->getValue()
+        );
     }
 
-    return output;
-}
-
-void FlowRoute::checkAction() const {
-    if (this->filter_action == NULL) {
-        throw FlowRouteException("Invalid or no action for FlowSpec defined!");
-    }
-}
-
-void FlowRoute::checkMatchCriteria() const {
-
+    this->parsePostChecks(request);
+    return request;
 }
