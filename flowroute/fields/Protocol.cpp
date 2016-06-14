@@ -3,6 +3,7 @@
 //
 
 #include "Protocol.h"
+#include <algorithm>
 #include "../exceptions/FlowRouteException.h"
 
 Protocol::Protocol(set<string> setValue) : AbstractFlowRouteField(setValue) {
