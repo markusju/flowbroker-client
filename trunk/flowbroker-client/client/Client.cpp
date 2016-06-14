@@ -6,7 +6,7 @@
 #include <netdb.h>
 #include <vector>
 #include "Client.h"
-
+#include <cstring>
 
 using namespace std;
 
