@@ -11,6 +11,7 @@
 #include "fields/DestinationAddress.h"
 #include "fields/Protocol.h"
 #include "fields/types/AbstractFlowRouteAction.h"
+#include "../protocol/BrokerRequest.h"
 
 using namespace std;
 
@@ -84,14 +85,13 @@ public:
     }
 
     FlowRoute();
+    BrokerRequest parseToRequest() const;
+
 
 protected:
-    string parse() const;
 
-    void checkAction() const;
-    void checkMatchCriteria() const;
-
-
+    void parsePreChecks() const;
+    void parsePostChecks(BrokerRequest &request) const;
 };
 
 
