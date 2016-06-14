@@ -16,7 +16,7 @@ using namespace std;
 class BrokerClient {
 public:
     BrokerClient(string host, int port);
-    BrokerReply sendRequest(BrokerRequest* request);
+    string sendRequest(string request);
 
 protected:
     void connect();

@@ -4,7 +4,11 @@
 
 #include <iostream>
 #include <netdb.h>
+#include <vector>
 #include "Client.h"
+
+
+using namespace std;
 
 bool Client::conn(string address, int port) {
 //create socket if it is not already created
@@ -88,16 +92,15 @@ bool Client::send_data(string data) {
 }
 
 string Client::receive(int size=512) {
-    char buffer[size];
-    string reply;
+    vector<char> buffer(1025);
 
     //Receive a reply from the server
-    if( recv(sock , buffer , sizeof(buffer) , 0) < 0)
+    if( recv(sock , buffer.data() , buffer.size() -1 , 0) < 0)
     {
         puts("recv failed");
     }
 
-    reply = buffer;
+    string reply(buffer.begin(), buffer.end());
     return reply;
 }
 

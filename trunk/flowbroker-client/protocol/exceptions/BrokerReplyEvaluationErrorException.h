@@ -6,14 +6,14 @@
 #define BROKER_PROTOCOL_CLIENT_BROKERREPLYEVALUATIONERROREXCEPTION_H
 
 #include <stdexcept>
+#include <string>
 
 using namespace std;
 
 class BrokerReplyEvaluationErrorException : public runtime_error {
 public:
-    BrokerReplyEvaluationErrorException (const char *msg) : runtime_error(msg) {}
-    BrokerReplyEvaluationErrorException (string& msg) : runtime_error(msg) {}
+    BrokerReplyEvaluationErrorException(const char *msg) : runtime_error(msg) {}
+    BrokerReplyEvaluationErrorException(string& msg) : runtime_error(msg) {}
 };
-
 
 #endif //BROKER_PROTOCOL_CLIENT_BROKERREPLYEVALUATIONERROREXCEPTION_H
