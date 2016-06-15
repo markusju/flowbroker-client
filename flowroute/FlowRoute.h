@@ -18,6 +18,10 @@ using namespace std;
 class FlowRoute {
 
 private:
+    /**
+     * All Pointers need to be explicitly null!
+     * Otherwise this may behave non-deterministic!
+     */
     Name* name = NULL;
     SourceAddress* source_address = NULL;
     DestinationAddress* destination_address = NULL;
@@ -85,13 +89,13 @@ public:
     }
 
     FlowRoute();
-    BrokerRequest* parseToRequest() const;
+    BrokerRequest parseToRequest() const;
 
 
 protected:
 
     void parsePreChecks() const;
-    void parsePostChecks(BrokerRequest* request) const;
+    void parsePostChecks(BrokerRequest& request) const;
 };
 
 
