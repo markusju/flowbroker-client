@@ -19,6 +19,7 @@ class BrokerRequest {
 
 public:
     BrokerRequest(string method);
+    BrokerRequest(const BrokerRequest &ref);
 
 
     string toString() const;

@@ -2,6 +2,7 @@
 // Created by Markus Jungbluth on 10.06.16.
 //
 
+#include <iostream>
 #include "FlowRoute.h"
 #include "exceptions/FlowRouteException.h"
 
@@ -115,3 +116,4 @@ BrokerRequest FlowRoute::parseToRequest() const {
     this->parsePostChecks(request);
     return request;
 }
+
