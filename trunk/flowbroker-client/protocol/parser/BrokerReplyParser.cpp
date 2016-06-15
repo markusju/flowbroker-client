@@ -58,10 +58,9 @@ BrokerReply BrokerReplyParser::evaluate(string input) {
         if (line.empty()) break;
         //cout << "LENGTH:" << line.length() << "VALUE:" << line << "DATA" << line.data() << "\n" ;
 
-        vector<string> elems = this->split(line, ':');
+        vector<string> elems = this->split(line, ':', 2);
 
-        //TODO
-        //if (elems.size() != 2) throw BrokerReplyParseErrorException("More than one colon in parameter string found.");
+        if (elems.size() != 2) throw BrokerReplyParseErrorException("More than one colon in parameter string found.");
 
         string key = elems[0];
         string value = elems[1];
@@ -76,18 +75,20 @@ BrokerReply BrokerReplyParser::evaluate(string input) {
 }
 
 
-vector<string> &BrokerReplyParser::split(const string &s, char delim, vector<string> &elems) {
+vector<string> &BrokerReplyParser::split(const string &s, char delim, vector<string> &elems, int max_occurrences) {
     stringstream ss(s);
     string item;
     while (getline(ss, item, delim)) {
-        elems.push_back(item);
+        if (elems.size() >= max_occurrences) {
+            elems[1] += item;
+        } else elems.push_back(item);
     }
     return elems;
 }
 
 
-vector<string> BrokerReplyParser::split(const string &s, char delim) {
+vector<string> BrokerReplyParser::split(const string &s, char delim, int max_occurrences) {
     vector<string> elems;
-    split(s, delim, elems);
+    split(s, delim, elems, max_occurrences);
     return elems;
 }

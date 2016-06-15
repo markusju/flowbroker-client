@@ -30,7 +30,7 @@ void BrokerProtocol::send(BrokerRequest *request) {
     ReplyCode* code = this->brokerReplyEvaluator->evaluate(&brokerReply);
 
     if (code->isFailed()) {
-        cout << "Your Request failed!" << "\n";
+        cout << "Your Request failed!" << " " << code->getCode() << " " << code->getDetailedExplanation() << "\n";
     } else {
         cout << "Status: " << code->getCode() << "\n";
     }

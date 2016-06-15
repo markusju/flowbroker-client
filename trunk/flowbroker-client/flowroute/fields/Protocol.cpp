@@ -12,7 +12,7 @@ Protocol::Protocol(set<string> setValue) : AbstractFlowRouteField(setValue) {
         return;
     }
 
-    throw FlowRouteException("Invalid values for this parameter!");
+    throw FlowRouteException("Invalid values for FlowRoute Protocol parameter!");
 }
 
 
