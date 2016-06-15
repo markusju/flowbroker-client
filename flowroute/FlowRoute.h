@@ -18,22 +18,22 @@ using namespace std;
 class FlowRoute {
 
 private:
-    Name* name;
-    SourceAddress* source_address;
-    DestinationAddress* destination_address;
-    Protocol* protocol;
+    Name* name = NULL;
+    SourceAddress* source_address = NULL;
+    DestinationAddress* destination_address = NULL;
+    Protocol* protocol = NULL;
 
-    AbstractFlowRouteField* port; //TODO
-    AbstractFlowRouteField* source_port; //TODO
-    AbstractFlowRouteField* destination_port; //TODO
-    AbstractFlowRouteField* icmp_type; //TODO
-    AbstractFlowRouteField* icmp_code; //TODO
-    AbstractFlowRouteField* tcp_flags; //TODO
-    AbstractFlowRouteField* packet_length; //TODO
-    AbstractFlowRouteField* fragment; //TODO
-    AbstractFlowRouteField* dscp; //TODO
+    AbstractFlowRouteField* port = NULL; //TODO
+    AbstractFlowRouteField* source_port = NULL; //TODO
+    AbstractFlowRouteField* destination_port = NULL; //TODO
+    AbstractFlowRouteField* icmp_type = NULL; //TODO
+    AbstractFlowRouteField* icmp_code = NULL; //TODO
+    AbstractFlowRouteField* tcp_flags = NULL; //TODO
+    AbstractFlowRouteField* packet_length = NULL; //TODO
+    AbstractFlowRouteField* fragment = NULL; //TODO
+    AbstractFlowRouteField* dscp = NULL; //TODO
 
-    AbstractFlowRouteAction* filter_action;
+    AbstractFlowRouteAction* filter_action = NULL;
 
 
 
