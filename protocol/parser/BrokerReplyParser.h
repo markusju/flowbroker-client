@@ -17,8 +17,8 @@ public:
     BrokerReply evaluate(string input);
 
 protected:
-    vector<string> &split(const string &s, char delim, vector<string> &elems);
-    vector<string> split(const string &s, char delim);
+    vector<string> &split(const string &s, char delim, vector<string> &elems, int max_occurrences = -1);
+    vector<string> split(const string &s, char delim, int max_occurrences = -1);
 
 };
 

@@ -8,6 +8,7 @@
 #include "protocol/parser/BrokerReplyParser.h"
 #include "client/BrokerClient.h"
 #include "protocol/BrokerProtocol.h"
+#include "cmdline/BrokerCmdInterface.h"
 
 
 
@@ -17,14 +18,19 @@
 
 using namespace std;
 
-int main() {
+int main(int argc, char** argv) {
 
     try {
-        BrokerClient client("127.0.0.1", 5653);
+        BrokerCmdInterface cmd(argc, argv);
+        BrokerClient client(cmd.getBrokerServer(), cmd.getBrokerServerPort());
+
         BrokerReplyParser parser;
         BrokerReplyEvaluator evaluator;
         BrokerProtocol protocol(&client, &parser, &evaluator);
 
+        FlowRoute* route = cmd.getFlowRoute();
+
+        /*
         FlowRoute route;
 
         set<string> seta = {"tcp"};
@@ -40,8 +46,10 @@ int main() {
         route.setDestination_address(&dest);
         route.setProtocol(&prot);
         route.setFilter_action(&discard);
+        */
 
-        BrokerRequest req = route.parseToRequest();
+
+        BrokerRequest req = route->parseToRequest();
 
         protocol.send(&req);
 
