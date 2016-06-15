@@ -29,7 +29,7 @@ BrokerCmdInterface::BrokerCmdInterface(int argc, char **argv) {
 
 
     cmd.defineOption("broker-server", "BrokerServer address", ArgvParser::OptionRequired | ArgvParser::OptionRequiresValue);
-    cmd.defineOption("broker-port", "BrokerServer port\nDefault: 5653", ArgvParser::OptionRequiresValue);
+    //cmd.defineOption("broker_port", "BrokerServer port\nDefault: 5653", ArgvParser::OptionRequiresValue);
     cmd.defineOption("action", "Defines a traffic action.\nValid actions are: DISCARD, RATELIMIT", ArgvParser::OptionRequired | ArgvParser::OptionRequiresValue);
     cmd.defineOption("rate-limit", "Defines the rate at which a traffic aggregate is to be limited\nDefault: 9600", ArgvParser::OptionRequiresValue);
     cmd.defineOption("source", "Defines the source IPv4 prefix for a traffic action:\nExample: 8.8.8.8/32", ArgvParser::OptionRequired | ArgvParser::OptionRequiresValue);
@@ -49,19 +49,19 @@ BrokerCmdInterface::BrokerCmdInterface(int argc, char **argv) {
         exit(1);
     }
 
-    if (cmd.isDefinedOption("broker-server")) broker_server = cmd.optionValue("broker-server");
+    if (cmd.foundOption("broker-server")) broker_server = cmd.optionValue("broker-server");
 
-    if (cmd.isDefinedOption("broker-port")) broker_port = cmd.optionValue("broker-port");
+    if (cmd.foundOption("broker-port")) broker_port = cmd.optionValue("broker-port");
 
 
-    if (cmd.isDefinedOption("action")) action = cmd.optionValue("action");
-    if (cmd.isDefinedOption("ratelimit")) ratelimit = cmd.optionValue("ratelimit");
-    if (cmd.isDefinedOption("source")) source = cmd.optionValue("source");
-    if (cmd.isDefinedOption("destination")) destination = cmd.optionValue("destination");
-    if (cmd.isDefinedOption("port")) port = cmd.optionValue("port");
-    if (cmd.isDefinedOption("destination-port")) destination_port = cmd.optionValue("destination-port");
-    if (cmd.isDefinedOption("source_port")) source_port = cmd.optionValue("source-port");
-    if (cmd.isDefinedOption("protocol")) protocol = cmd.optionValue("protocol");
+    if (cmd.foundOption("action")) action = cmd.optionValue("action");
+    if (cmd.foundOption("ratelimit")) ratelimit = cmd.optionValue("ratelimit");
+    if (cmd.foundOption("source")) source = cmd.optionValue("source");
+    if (cmd.foundOption("destination")) destination = cmd.optionValue("destination");
+    if (cmd.foundOption("port")) port = cmd.optionValue("port");
+    if (cmd.foundOption("destination-port")) destination_port = cmd.optionValue("destination-port");
+    if (cmd.foundOption("source-port")) source_port = cmd.optionValue("source-port");
+    if (cmd.foundOption("protocol")) protocol = cmd.optionValue("protocol");
 
     this->generateFlowRoute();
 
