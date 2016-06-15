@@ -41,9 +41,9 @@ int main() {
         route.setProtocol(&prot);
         route.setFilter_action(&discard);
 
-        BrokerRequest* req = route.parseToRequest();
+        BrokerRequest req = route.parseToRequest();
 
-        protocol.send(req);
+        protocol.send(&req);
 
 
     } catch(exception& exc) {
