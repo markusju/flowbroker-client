@@ -85,13 +85,13 @@ public:
     }
 
     FlowRoute();
-    BrokerRequest parseToRequest() const;
+    BrokerRequest* parseToRequest() const;
 
 
 protected:
 
     void parsePreChecks() const;
-    void parsePostChecks(BrokerRequest &request) const;
+    void parsePostChecks(BrokerRequest* request) const;
 };
 
 
