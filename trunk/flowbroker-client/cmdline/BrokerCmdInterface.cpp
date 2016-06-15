@@ -11,6 +11,13 @@
 
 
 BrokerCmdInterface::BrokerCmdInterface(int argc, char **argv) {
+
+    //Defaults
+
+    broker_port = "5653";
+    ratelimit = "9600";
+
+
     // init
     cmd.setIntroductoryDescription("BrokerProtocol Denial of Service mitigation client.\nUsage:");
 
