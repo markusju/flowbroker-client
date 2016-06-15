@@ -31,7 +31,7 @@ BrokerCmdInterface::BrokerCmdInterface(int argc, char **argv) {
     cmd.defineOption("broker-server", "BrokerServer address", ArgvParser::OptionRequired | ArgvParser::OptionRequiresValue);
     cmd.defineOption("broker-port", "BrokerServer port\nDefault: 5653", ArgvParser::OptionRequiresValue);
     cmd.defineOption("action", "Defines a traffic action.\nValid actions are: DISCARD, RATELIMIT", ArgvParser::OptionRequired | ArgvParser::OptionRequiresValue);
-    cmd.defineOption("rate-limit", "Defines the rate at which a traffic aggregate is to be limited\nDefault: 9600");
+    cmd.defineOption("rate-limit", "Defines the rate at which a traffic aggregate is to be limited\nDefault: 9600", ArgvParser::OptionRequiresValue);
     cmd.defineOption("source", "Defines the source IPv4 prefix for a traffic action:\nExample: 8.8.8.8/32", ArgvParser::OptionRequired | ArgvParser::OptionRequiresValue);
     cmd.defineOption("destination", "Specifies a destination address for the traffic action.\nExample: 8.8.8.8/32.\nIf not set, this will default to the host's IP-Address.", ArgvParser::OptionRequiresValue);
     cmd.defineOption("port", "", ArgvParser::OptionRequiresValue);
@@ -51,7 +51,7 @@ BrokerCmdInterface::BrokerCmdInterface(int argc, char **argv) {
 
     if (cmd.isDefinedOption("broker-server")) broker_server = cmd.optionValue("broker-server");
 
-    if (!cmd.optionValue("broker-port").empty()) broker_port = cmd.optionValue("broker-port");
+    if (cmd.isDefinedOption("broker-port")) broker_port = cmd.optionValue("broker-port");
 
 
     if (cmd.isDefinedOption("action")) action = cmd.optionValue("action");
