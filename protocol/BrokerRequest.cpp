@@ -2,6 +2,7 @@
 // Created by Markus Jungbluth on 13.06.16.
 //
 
+#include <iostream>
 #include "BrokerRequest.h"
 
 BrokerRequest::BrokerRequest(string method) {
@@ -32,3 +33,8 @@ string BrokerRequest::toString() const {
     return output;
 }
 
+BrokerRequest::BrokerRequest(const BrokerRequest &ref) {
+    this->requestMethod = ref.requestMethod;
+    this->requestArguments = ref.requestArguments;
+    this->parameters = ref.parameters;
+}
