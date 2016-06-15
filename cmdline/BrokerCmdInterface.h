@@ -35,10 +35,10 @@ private:
 
 
     string broker_server;
-    string broker_port = "5653";
+    string broker_port;
 
     string action;
-    string ratelimit = "9600";
+    string ratelimit;
     string source;
     string destination;
     string port;
