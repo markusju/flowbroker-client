@@ -58,6 +58,7 @@ BrokerRequest* FlowRoute::parseToRequest() const {
     }
 
     if (this->destination_port != NULL) {
+        cout << "dest_port" << "\n";
         request->addParameter(
                 this->destination_port->getKey(),
                 this->destination_port->getValue()
