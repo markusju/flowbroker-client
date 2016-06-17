@@ -12,6 +12,7 @@
 #include "fields/Protocol.h"
 #include "fields/types/AbstractFlowRouteAction.h"
 #include "../protocol/BrokerRequest.h"
+#include "fields/Expires.h"
 
 using namespace std;
 
@@ -23,6 +24,9 @@ private:
      * Otherwise this may behave non-deterministic!
      */
     Name* name = NULL;
+    Expires* expires = NULL;
+
+
     SourceAddress* source_address = NULL;
     DestinationAddress* destination_address = NULL;
     Protocol* protocol = NULL;
@@ -86,6 +90,15 @@ public:
 
     void setFilter_action(AbstractFlowRouteAction *filter_action) {
         this->filter_action = filter_action;
+    }
+
+
+    Expires *getExpires() const {
+        return expires;
+    }
+
+    void setExpires(Expires *expires) {
+        FlowRoute::expires = expires;
     }
 
     FlowRoute();
