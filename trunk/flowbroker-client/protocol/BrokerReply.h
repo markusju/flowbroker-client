@@ -38,6 +38,8 @@ public:
         return statusCode;
     }
 
+    string toStringForSignatureValidation() const;
+
 private:
     int statusCode;
     string message;

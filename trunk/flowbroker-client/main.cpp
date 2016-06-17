@@ -31,7 +31,8 @@ int main(int argc, char** argv) {
 
         BrokerReplyParser parser;
         BrokerReplyEvaluator evaluator;
-        BrokerProtocol protocol(&client, &parser, &evaluator);
+        BrokerSecurityModule secModule("secret");
+        BrokerProtocol protocol(&client, &parser, &evaluator, &secModule);
 
         FlowRoute* route = cmd.getFlowRoute();
 

@@ -11,15 +11,17 @@
 #include "BrokerRequest.h"
 #include "parser/BrokerReplyParser.h"
 #include "evaluator/BrokerReplyEvaluator.h"
+#include "security/BrokerSecurityModule.h"
 
 class BrokerProtocol {
 public:
-    BrokerProtocol(BrokerClient* brokerClient, BrokerReplyParser* brokerReplyParser, BrokerReplyEvaluator* brokerReplyEvaluator);
+    BrokerProtocol(BrokerClient* brokerClient, BrokerReplyParser* brokerReplyParser, BrokerReplyEvaluator* brokerReplyEvaluator, BrokerSecurityModule* brokerSecurityModule);
     void send(BrokerRequest* request);
 private:
     BrokerClient* brokerClient;
     BrokerReplyParser* brokerReplyParser;
     BrokerReplyEvaluator* brokerReplyEvaluator;
+    BrokerSecurityModule* brokerSecurityModule;
 
 };
 

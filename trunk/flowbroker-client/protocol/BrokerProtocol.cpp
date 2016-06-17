@@ -5,10 +5,11 @@
 #include <iostream>
 #include "BrokerProtocol.h"
 
-BrokerProtocol::BrokerProtocol(BrokerClient *brokerClient, BrokerReplyParser* brokerReplyParser, BrokerReplyEvaluator* brokerReplyEvaluator) {
+BrokerProtocol::BrokerProtocol(BrokerClient *brokerClient, BrokerReplyParser* brokerReplyParser, BrokerReplyEvaluator* brokerReplyEvaluator, BrokerSecurityModule* brokerSecurityModule) {
     this->brokerClient = brokerClient;
     this->brokerReplyParser = brokerReplyParser;
     this->brokerReplyEvaluator = brokerReplyEvaluator;
+    this->brokerSecurityModule = brokerSecurityModule;
 }
 
 void BrokerProtocol::send(BrokerRequest *request) {
@@ -23,8 +24,8 @@ void BrokerProtocol::send(BrokerRequest *request) {
     BrokerReply brokerReply = this->brokerReplyParser->evaluate(receivedString);
 
     //Checking the HMAC
-    //brokerReply.getParameters()["Signature"];
-
+    brokerSecurityModule->validateDate(&brokerReply);
+    brokerSecurityModule->validateSignature(&brokerReply);
 
     //Evaluating the Reply
     ReplyCode* code = this->brokerReplyEvaluator->evaluate(&brokerReply);
