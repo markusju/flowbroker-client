@@ -36,6 +36,16 @@ BrokerRequest FlowRoute::parseToRequest() const {
         request.addRequestArgument(el);
     }
 
+
+    if (this->expires != NULL) {
+        request.addParameter(
+                this->expires->getKey(),
+                this->expires->getValue()
+        );
+    }
+
+
+
     if (this->destination_address != NULL) {
         request.addParameter(
                 this->destination_address->getKey(),

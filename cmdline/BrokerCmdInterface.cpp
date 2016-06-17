@@ -34,6 +34,7 @@ BrokerCmdInterface::BrokerCmdInterface(int argc, char **argv) {
     cmd.defineOption("rate-limit", "Defines the rate at which a traffic aggregate is to be limited\nDefault: 9600", ArgvParser::OptionRequiresValue);
     cmd.defineOption("source", "Defines the source IPv4 prefix for a traffic action:\nExample: 8.8.8.8/32", ArgvParser::OptionRequired | ArgvParser::OptionRequiresValue);
     cmd.defineOption("destination", "Specifies a destination address for the traffic action.\nExample: 8.8.8.8/32.\nIf not set, this will default to the host's IP-Address.", ArgvParser::OptionRequiresValue);
+    cmd.defineOption("expires", "Defines a duration in seconds, after which the FlowSpec is revoked on the broker", ArgvParser::OptionRequiresValue);
     cmd.defineOption("port", "", ArgvParser::OptionRequiresValue);
     cmd.defineOption("destination-port", "", ArgvParser::OptionRequiresValue);
     cmd.defineOption("source-port", "", ArgvParser::OptionRequiresValue);
@@ -55,6 +56,7 @@ BrokerCmdInterface::BrokerCmdInterface(int argc, char **argv) {
 
 
     if (cmd.foundOption("action")) action = cmd.optionValue("action");
+    if (cmd.foundOption("expires")) expires = cmd.optionValue("expires");
     if (cmd.foundOption("ratelimit")) ratelimit = cmd.optionValue("ratelimit");
     if (cmd.foundOption("source")) source = cmd.optionValue("source");
     if (cmd.foundOption("destination")) destination = cmd.optionValue("destination");
@@ -111,6 +113,10 @@ void BrokerCmdInterface::generateFlowRoute() {
 
     if (!destination.empty()) {
         flowRoute->setDestination_address(new DestinationAddress(destination));
+    }
+
+    if (!expires.empty()) {
+        flowRoute->setExpires(new Expires(stoi(expires)));
     }
 
     if (!port.empty()) {
