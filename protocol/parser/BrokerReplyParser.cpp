@@ -62,8 +62,8 @@ BrokerReply BrokerReplyParser::evaluate(string input) {
 
         if (elems.size() != 2) throw BrokerReplyParseErrorException("More than one colon in parameter string found.");
 
-        string key = elems[0];
-        string value = elems[1];
+        string key = trim(elems[0]);
+        string value = trim(elems[1]);
 
         if (key.length() < 1 || value.length() < 1) {
             throw BrokerReplyParseErrorException("Key and/or Value may not be empty!");
@@ -80,7 +80,7 @@ vector<string> &BrokerReplyParser::split(const string &s, char delim, vector<str
     string item;
     while (getline(ss, item, delim)) {
         if (elems.size() >= max_occurrences) {
-            elems[1] += item;
+            elems[1] += delim+item;
         } else elems.push_back(item);
     }
     return elems;
@@ -91,4 +91,23 @@ vector<string> BrokerReplyParser::split(const string &s, char delim, int max_occ
     vector<string> elems;
     split(s, delim, elems, max_occurrences);
     return elems;
+}
+
+
+string & BrokerReplyParser::ltrim(std::string & str)
+{
+    auto it2 =  std::find_if( str.begin() , str.end() , [](char ch){ return !std::isspace<char>(ch , std::locale::classic() ) ; } );
+    str.erase( str.begin() , it2);
+    return str;
+}
+
+string & BrokerReplyParser::rtrim(std::string & str)
+{
+    auto it1 =  std::find_if( str.rbegin() , str.rend() , [](char ch){ return !std::isspace<char>(ch , std::locale::classic() ) ; } );
+    str.erase( it1.base() , str.end() );
+    return str;
+}
+
+string &BrokerReplyParser::trim(std::string &str) {
+    return ltrim(rtrim(str));
 }
