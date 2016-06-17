@@ -9,6 +9,7 @@
 #include "client/BrokerClient.h"
 #include "protocol/BrokerProtocol.h"
 #include "cmdline/BrokerCmdInterface.h"
+#include "protocol/security/MessageAuthenticationCode.h"
 
 
 
@@ -19,6 +20,10 @@
 using namespace std;
 
 int main(int argc, char** argv) {
+
+    MessageAuthenticationCode code("secret");
+    string hmac = code.getMacForMessage("test");
+    cout << hmac << "\n";
 
     try {
         BrokerCmdInterface cmd(argc, argv);
