@@ -20,18 +20,13 @@
 using namespace std;
 
 int main(int argc, char** argv) {
-
-    MessageAuthenticationCode code("secret");
-    string hmac = code.getMacForMessage("test");
-    cout << hmac << "\n";
-
     try {
         BrokerCmdInterface cmd(argc, argv);
         BrokerClient client(cmd.getBrokerServer(), cmd.getBrokerServerPort());
 
         BrokerReplyParser parser;
         BrokerReplyEvaluator evaluator;
-        BrokerSecurityModule secModule("secret");
+        BrokerSecurityModule secModule("assa54gf54fgh564sd54fsdf");
         BrokerProtocol protocol(&client, &parser, &evaluator, &secModule);
 
         FlowRoute* route = cmd.getFlowRoute();
