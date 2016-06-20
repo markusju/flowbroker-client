@@ -26,7 +26,7 @@ int main(int argc, char** argv) {
 
         BrokerReplyParser parser;
         BrokerReplyEvaluator evaluator;
-        BrokerSecurityModule secModule("assa54gf54fgh564sd54fsdf");
+        BrokerSecurityModule secModule(cmd.getSecret());
         BrokerProtocol protocol(&client, &parser, &evaluator, &secModule);
 
         FlowRoute* route = cmd.getFlowRoute();

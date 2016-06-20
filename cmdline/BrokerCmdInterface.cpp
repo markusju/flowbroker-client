@@ -27,7 +27,7 @@ BrokerCmdInterface::BrokerCmdInterface(int argc, char **argv) {
 
     cmd.setHelpOption("h", "help", "Print this help page");
 
-
+    cmd.defineOption("secret", "HMAC secret used to secure the communication with the Broker Server", ArgvParser::OptionRequired | ArgvParser::OptionRequiresValue);
     cmd.defineOption("broker-server", "BrokerServer address", ArgvParser::OptionRequired | ArgvParser::OptionRequiresValue);
     cmd.defineOption("broker_port", "BrokerServer port\nDefault: 5653", ArgvParser::OptionRequiresValue);
     cmd.defineOption("action", "Defines a traffic action.\nValid actions are: DISCARD, RATELIMIT", ArgvParser::OptionRequired | ArgvParser::OptionRequiresValue);
@@ -50,8 +50,8 @@ BrokerCmdInterface::BrokerCmdInterface(int argc, char **argv) {
         exit(1);
     }
 
+    if (cmd.foundOption("secret")) secret = cmd.optionValue("secret");
     if (cmd.foundOption("broker-server")) broker_server = cmd.optionValue("broker-server");
-
     if (cmd.foundOption("broker-port")) broker_port = cmd.optionValue("broker-port");
 
 
