@@ -44,8 +44,6 @@ BrokerRequest FlowRoute::parseToRequest() const {
         );
     }
 
-
-
     if (this->destination_address != NULL) {
         request.addParameter(
                 this->destination_address->getKey(),

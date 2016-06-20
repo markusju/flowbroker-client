@@ -14,6 +14,10 @@ BrokerProtocol::BrokerProtocol(BrokerClient *brokerClient, BrokerReplyParser* br
 
 void BrokerProtocol::send(BrokerRequest *request) {
 
+    //Applying the HMAC
+    brokerSecurityModule->setDate(request);
+    brokerSecurityModule->signRequest(request);
+
     //Synthesizing the request
     string requestString = request->toString();
 
