@@ -23,6 +23,9 @@ protected:
     void disconnect();
 private:
 
+
+    string secret;
+
     Client client;
     string host;
     int port;

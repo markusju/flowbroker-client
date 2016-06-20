@@ -25,6 +25,10 @@ public:
         return stoi(broker_port);
     }
 
+    string getSecret() {
+        return secret;
+    }
+
 protected:
     void generateFlowRoute();
 
@@ -37,6 +41,7 @@ private:
     string broker_port;
 
     string expires;
+    string secret;
 
     string action;
     string ratelimit;
