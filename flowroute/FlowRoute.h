@@ -13,6 +13,7 @@
 #include "fields/types/AbstractFlowRouteAction.h"
 #include "../protocol/BrokerRequest.h"
 #include "fields/Expires.h"
+#include "fields/Port.h"
 
 using namespace std;
 
@@ -31,7 +32,7 @@ private:
     DestinationAddress* destination_address = NULL;
     Protocol* protocol = NULL;
 
-    AbstractFlowRouteField* port = NULL; //TODO
+    Port* port = NULL; //TODO
     AbstractFlowRouteField* source_port = NULL; //TODO
     AbstractFlowRouteField* destination_port = NULL; //TODO
     AbstractFlowRouteField* icmp_type = NULL; //TODO
@@ -92,13 +93,21 @@ public:
         this->filter_action = filter_action;
     }
 
-
     Expires *getExpires() const {
         return expires;
     }
 
     void setExpires(Expires *expires) {
         FlowRoute::expires = expires;
+    }
+
+
+    Port *getPort() const {
+        return port;
+    }
+
+    void setPort(Port *port) {
+        FlowRoute::port = port;
     }
 
     FlowRoute();

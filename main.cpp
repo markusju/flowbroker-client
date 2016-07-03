@@ -21,7 +21,10 @@ using namespace std;
 
 int main(int argc, char** argv) {
     try {
+        //Command Line Interface
         BrokerCmdInterface cmd(argc, argv);
+
+        //Setting up the client with options obtained from CMD
         BrokerClient client(cmd.getBrokerServer(), cmd.getBrokerServerPort());
 
         BrokerReplyParser parser;
@@ -29,6 +32,7 @@ int main(int argc, char** argv) {
         BrokerSecurityModule secModule(cmd.getSecret());
         BrokerProtocol protocol(&client, &parser, &evaluator, &secModule);
 
+        //Obtaining FlowRoute from CMD
         FlowRoute* route = cmd.getFlowRoute();
 
         /*
@@ -48,7 +52,6 @@ int main(int argc, char** argv) {
         route.setProtocol(&prot);
         route.setFilter_action(&discard);
         */
-
 
         BrokerRequest req = route->parseToRequest();
 
