@@ -8,13 +8,17 @@
 
 
 void NumberRange::analyze(string input) {
-    vector<string> tokens = stringHelper::split(input, '&');
+    tokens = stringHelper::split(input, '&');
 
     if (tokens.size() < 1) {
         throw FlowRouteException("Invalid NumberRangeExpression");
     }
 
     for (auto el : tokens) {
-        analzyeElement(el);
+        analyzeElement(el);
     }
+}
+
+vector<string> NumberRange::getTokens() {
+    return tokens;
 }

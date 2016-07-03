@@ -7,6 +7,7 @@
 
 
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -15,8 +16,10 @@ class NumberRange {
 public:
     void analyze(string input);
 protected:
-    virtual void analzyeElement(string element) = 0;
-
+    virtual void analyzeElement(string element) = 0;
+    vector<string> getTokens();
+private:
+    vector<string> tokens;
 };
 
 
