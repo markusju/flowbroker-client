@@ -15,13 +15,6 @@ class BrokerReplyParser {
 public:
     BrokerReplyParser();
     BrokerReply evaluate(string input);
-
-protected:
-    vector<string> &split(const string &s, char delim, vector<string> &elems, int max_occurrences = -1);
-    vector<string> split(const string &s, char delim, int max_occurrences = -1);
-    string& ltrim(std::string & str);
-    string& rtrim(std::string & str);
-    string& trim(std::string & str);
 };
 
 

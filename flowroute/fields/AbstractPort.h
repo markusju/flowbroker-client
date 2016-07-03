@@ -9,6 +9,7 @@
 #include <string>
 #include "types/AbstractFlowRouteField.h"
 #include "AbstractAddress.h"
+#include "expressions/PortExpression.h"
 
 using namespace std;
 
@@ -16,7 +17,8 @@ class AbstractPort : public AbstractFlowRouteField {
 
 public:
     AbstractPort(string value);
-
+private:
+    PortExpression portExpression;
 
 };
 
