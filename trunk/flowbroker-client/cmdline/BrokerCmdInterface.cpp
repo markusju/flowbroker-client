@@ -8,6 +8,7 @@
 #include "../flowroute/fields/DISCARD.h"
 #include "../flowroute/fields/RATELIMIT.h"
 #include "exceptions/BrokerCmdInterfaceValueErrorException.h"
+#include "../flowroute/fields/SourcePort.h"
 
 
 BrokerCmdInterface::BrokerCmdInterface(int argc, char **argv) {
@@ -124,11 +125,11 @@ void BrokerCmdInterface::generateFlowRoute() {
     }
 
     if (!destination_port.empty()) {
-        //TODO
+        flowRoute->setDestination_port(new DestinationPort(destination_port));
     }
 
     if (!source_port.empty()) {
-        //TODO
+        flowRoute->setSource_port(new SourcePort(source_port));
     }
 
     if (!protocol.empty()) {

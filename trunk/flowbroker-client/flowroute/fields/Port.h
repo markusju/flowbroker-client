@@ -7,13 +7,14 @@
 
 
 #include "types/AbstractFlowRouteField.h"
+#include "AbstractPort.h"
 
-class Port : public AbstractFlowRouteField {
+class Port : public AbstractPort {
 
 
 public:
     string getKey() const;
-    Port(string value);
+    Port(string value) : AbstractPort(value) { }
 };
 
 

@@ -8,4 +8,3 @@ string Port::getKey() const {
     return "Port";
 }
 
-Port::Port(string value) : AbstractFlowRouteField(value) {}
