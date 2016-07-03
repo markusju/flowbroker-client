@@ -14,6 +14,8 @@
 #include "../protocol/BrokerRequest.h"
 #include "fields/Expires.h"
 #include "fields/Port.h"
+#include "fields/DestinationPort.h"
+#include "fields/SourcePort.h"
 
 using namespace std;
 
@@ -33,8 +35,8 @@ private:
     Protocol* protocol = NULL;
 
     Port* port = NULL; //TODO
-    AbstractFlowRouteField* source_port = NULL; //TODO
-    AbstractFlowRouteField* destination_port = NULL; //TODO
+    SourcePort* source_port = NULL; //TODO
+    DestinationPort* destination_port = NULL; //TODO
     AbstractFlowRouteField* icmp_type = NULL; //TODO
     AbstractFlowRouteField* icmp_code = NULL; //TODO
     AbstractFlowRouteField* tcp_flags = NULL; //TODO
@@ -108,6 +110,24 @@ public:
 
     void setPort(Port *port) {
         FlowRoute::port = port;
+    }
+
+
+    DestinationPort *getDestination_port() const {
+        return destination_port;
+    }
+
+    void setDestination_port(DestinationPort *destination_port) {
+        FlowRoute::destination_port = destination_port;
+    }
+
+
+    SourcePort *getSource_port() const {
+        return source_port;
+    }
+
+    void setSource_port(SourcePort *source_port) {
+        FlowRoute::source_port = source_port;
     }
 
     FlowRoute();
