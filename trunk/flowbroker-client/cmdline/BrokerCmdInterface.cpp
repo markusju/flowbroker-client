@@ -120,7 +120,7 @@ void BrokerCmdInterface::generateFlowRoute() {
     }
 
     if (!port.empty()) {
-        //TODO
+        flowRoute->setPort(new Port(port));
     }
 
     if (!destination_port.empty()) {

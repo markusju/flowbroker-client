@@ -43,7 +43,12 @@ BrokerReply BrokerReplyParser::evaluate(string input) {
         //STATUS MESSAGE
         if (!elems.empty()) {
             //Concatenate the remaining vectors to a String and set them as the message string..
-            reply.setMessage(accumulate(elems.begin(), elems.end(), string("")));
+            reply.setMessage(accumulate(elems.begin(), elems.end(), string(""),
+                                        [](const string& a, const string& b) {
+                                            return a.empty() ? b : a + ' ' + b;
+                                        }
+            )
+            );
         } else {
             throw BrokerReplyParseErrorException("No Message in reply.");
         }
