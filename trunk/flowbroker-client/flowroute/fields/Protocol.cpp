@@ -21,9 +21,4 @@ string Protocol::getKey() const {
     return "Protocol";
 }
 
-Protocol::Protocol(string value) : AbstractFlowRouteField(value) {
-
-    //TODO: Checks
-
-
-}
+Protocol::Protocol(string value) : AbstractFlowRouteField(value) {}
