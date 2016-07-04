@@ -36,7 +36,7 @@ BrokerCmdInterface::BrokerCmdInterface(int argc, char **argv) {
     cmd.defineOption("source", "Defines the source IPv4 prefix for a traffic action:\nExample: 8.8.8.8/32", ArgvParser::OptionRequired | ArgvParser::OptionRequiresValue);
     cmd.defineOption("destination", "Specifies a destination address for the traffic action.\nExample: 8.8.8.8/32.\nIf not set, this will default to the host's IP-Address.", ArgvParser::OptionRequiresValue);
     cmd.defineOption("expires", "Defines a duration in seconds, after which the FlowSpec is revoked on the broker", ArgvParser::OptionRequiresValue);
-    cmd.defineOption("port", "", ArgvParser::OptionRequiresValue);
+    cmd.defineOption("port", "Defines a Source AND Destination Port. Example: =80&=90 or >80&<120", ArgvParser::OptionRequiresValue);
     cmd.defineOption("destination-port", "", ArgvParser::OptionRequiresValue);
     cmd.defineOption("source-port", "", ArgvParser::OptionRequiresValue);
     cmd.defineOption("protocol", "", ArgvParser::OptionRequiresValue);

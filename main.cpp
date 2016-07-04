@@ -23,13 +23,6 @@ int main(int argc, char** argv) {
     try {
 
 
-
-
-        PortExpression exp;
-        exp.analyze(">80&<80&=8000");
-
-
-
         //Command Line Interface
         BrokerCmdInterface cmd(argc, argv);
 
