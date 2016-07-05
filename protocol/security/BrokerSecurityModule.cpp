@@ -23,14 +23,13 @@ BrokerSecurityModule::BrokerSecurityModule(string secret) : mac(secret) {
 }
 
 void BrokerSecurityModule::validateDate(BrokerReply *brokerReply) {
-
-    //If exists
     if (brokerReply->getParameters().count("Date")) {
-        //TODO
+        string date = brokerReply->getParameters()["Date"];
+        this->date.checkTimeStamp(date);
         return;
     }
 
-    throw DateValidationFailedErrorException("Server supplied a signed timestamp which is too old. This could be a replay attack.");
+    throw DateValidationFailedErrorException("Server did not supply a timestamp. Replay attack checks could not be performed!");
 }
 
 void BrokerSecurityModule::signRequest(BrokerRequest *brokerRequest) {
@@ -39,5 +38,5 @@ void BrokerSecurityModule::signRequest(BrokerRequest *brokerRequest) {
 }
 
 void BrokerSecurityModule::setDate(BrokerRequest *brokerRequest) {
-    brokerRequest->addParameter("Date", "123456789");
+    brokerRequest->addParameter("Date", date.getCurrentTimeStamp());
 }

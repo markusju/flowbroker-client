@@ -9,6 +9,7 @@
 #include "../BrokerReply.h"
 #include "MessageAuthenticationCode.h"
 #include "../BrokerRequest.h"
+#include "BrokerDate.h"
 
 class BrokerSecurityModule {
 public:
@@ -22,6 +23,7 @@ public:
 
 private:
     MessageAuthenticationCode mac;
+    BrokerDate date;
 };
 
 
