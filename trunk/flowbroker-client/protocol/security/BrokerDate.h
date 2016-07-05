@@ -6,8 +6,14 @@
 #define BROKER_PROTOCOL_CLIENT_BROKERDATE_H
 
 
-class BrokerDate {
+#include <string>
 
+using namespace std;
+
+class BrokerDate {
+public:
+    void checkTimeStamp(string date);
+    string getCurrentTimeStamp();
 };
 
 
