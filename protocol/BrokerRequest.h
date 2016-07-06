@@ -48,6 +48,7 @@ public:
 private:
     string requestMethod;
     set<string> requestArguments;
+    //TODO: Not suitable use sth else!
     map<string, string> parameters;
 
 
