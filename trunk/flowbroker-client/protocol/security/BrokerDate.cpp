@@ -13,7 +13,7 @@
 void BrokerDate::checkTimeStamp(string date) {
     long start_millis = chrono::duration_cast<chrono::milliseconds>(chrono::system_clock::now().time_since_epoch()).count();
 
-    cout << date << "\n";
+    //cout << date << "\n";
     tm t = {};
     istringstream ss(date);
     ss >> get_time(&t, "%Y-%m-%dT%H:%M:%S");
@@ -23,6 +23,7 @@ void BrokerDate::checkTimeStamp(string date) {
     smatch m;
 
     if (!regex_match(date, m, reg)) throw DateValidationFailedErrorException("Invalid Date!");
+    //TODO: Check this..
     int stamp_millis = stoi(m[1].str());
     stamp_millis = stamp_millis / 1000;
     time_t tt1 = mktime(&t) - timezone;
@@ -36,5 +37,14 @@ void BrokerDate::checkTimeStamp(string date) {
 }
 
 string BrokerDate::getCurrentTimeStamp() {
-    return "123456789";
+    long now_micros = chrono::duration_cast<chrono::microseconds>(chrono::system_clock::now().time_since_epoch()).count();
+    time_t now_secs = now_micros / 1000000;
+
+    std::stringstream ss;
+    ss << std::put_time(gmtime(&now_secs), "%Y-%m-%dT%H:%M:%S") << "." << now_micros % 1000000 << "Z";
+
+    //cout << ss.str() << "\n";
+
+    //return "123456789";
+    return ss.str();
 }
