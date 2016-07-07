@@ -20,8 +20,10 @@
 using namespace std;
 
 int main(int argc, char** argv) {
-    try {
 
+
+    for(int i =0;i<10000;i++)
+    try {
 
         //Command Line Interface
         BrokerCmdInterface cmd(argc, argv);
@@ -58,7 +60,6 @@ int main(int argc, char** argv) {
         BrokerRequest req = route->parseToRequest();
 
         protocol.send(&req);
-
 
     } catch(exception& exc) {
         cerr << "An Error occured: " << exc.what() << "\n";
