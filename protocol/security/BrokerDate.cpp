@@ -7,6 +7,7 @@
 #include <sstream>
 #include <iomanip>
 #include <regex>
+#include <cmath>
 #include "BrokerDate.h"
 #include "exceptions/DateValidationFailedErrorException.h"
 
@@ -41,10 +42,12 @@ string BrokerDate::getCurrentTimeStamp() {
     time_t now_secs = now_micros / 1000000;
 
     std::stringstream ss;
-    ss << std::put_time(gmtime(&now_secs), "%Y-%m-%dT%H:%M:%S") << "." << now_micros % 1000000 << "Z";
+    stringstream ss2;
+    ss2 << fixed << (now_micros % 1000000) / 1000000.0;
+    ss << std::put_time(gmtime(&now_secs), "%Y-%m-%dT%H:%M:%S") << ss2.str().erase(0,1) << "Z";
 
     //cout << ss.str() << "\n";
-
+    //cout << now_secs << " " << now_micros << " " << ss.str();
     //return "123456789";
     return ss.str();
 }
