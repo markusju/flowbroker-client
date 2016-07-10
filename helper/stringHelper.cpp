@@ -12,7 +12,7 @@ namespace stringHelper {
         stringstream ss(s);
         string item;
         while (getline(ss, item, delim)) {
-            if (elems.size() >= max_occurrences) {
+            if (elems.size() >= ((unsigned int) max_occurrences)) {
                 elems[1] += delim+item;
             } else elems.push_back(item);
         }
