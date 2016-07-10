@@ -40,8 +40,8 @@ void BrokerDate::checkTimeStamp(string date) {
 string BrokerDate::getCurrentTimeStamp() {
     long now_micros = chrono::duration_cast<chrono::microseconds>(chrono::system_clock::now().time_since_epoch()).count();
     time_t now_secs = now_micros / 1000000;
-
-    std::stringstream ss;
+    //now_secs = now_secs + 1;
+    stringstream ss;
     stringstream ss2;
     ss2 << fixed << (now_micros % 1000000) / 1000000.0;
     ss << std::put_time(gmtime(&now_secs), "%Y-%m-%dT%H:%M:%S") << ss2.str().erase(0,1) << "Z";

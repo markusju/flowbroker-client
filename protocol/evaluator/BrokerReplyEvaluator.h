@@ -15,11 +15,6 @@ class BrokerReplyEvaluator {
 public:
     BrokerReplyEvaluator();
     ReplyCode* evaluate(BrokerReply* brokerReply);
-
-private:
-    BrokerReply* reply;
-
-
 };
 
 

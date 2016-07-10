@@ -9,6 +9,7 @@
 #include <list>
 #include <map>
 #include <set>
+#include <vector>
 
 using namespace std;
 
@@ -24,12 +25,12 @@ public:
 
     string toString() const;
 
-    map<string, string> getParameters() const{
+    vector<pair<string, string>> getParameters() const{
         return parameters;
     }
 
     void addParameter(string key, string value) {
-        this->parameters[key] =  value;
+        this->parameters.push_back(make_pair(key, value));
     }
 
     void addRequestArgument(string argument) {
@@ -48,8 +49,7 @@ public:
 private:
     string requestMethod;
     set<string> requestArguments;
-    //TODO: Not suitable use sth else!
-    map<string, string> parameters;
+    vector<pair<string, string>> parameters;
 
 
 };
