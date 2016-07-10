@@ -4,7 +4,7 @@
 
 
 #include "stringHelper.h"
-
+#include <algorithm>
 
 namespace stringHelper {
 
