@@ -28,7 +28,7 @@ void BrokerProtocol::send(BrokerRequest *request) {
     BrokerReply brokerReply = this->brokerReplyParser->evaluate(receivedString);
 
     //Checking the HMAC
-    //brokerSecurityModule->validateDate(&brokerReply);
+    brokerSecurityModule->validateDate(&brokerReply);
     brokerSecurityModule->validateSignature(&brokerReply);
 
     //Evaluating the Reply
