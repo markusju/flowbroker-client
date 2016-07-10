@@ -9,6 +9,7 @@
 #include <regex>
 #include <cmath>
 #include <chrono>
+#include <ctime>
 #include "BrokerDate.h"
 #include "exceptions/DateValidationFailedErrorException.h"
 
