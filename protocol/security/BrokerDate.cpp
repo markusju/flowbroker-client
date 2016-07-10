@@ -9,32 +9,18 @@
 #include <regex>
 #include <cmath>
 #include <chrono>
-#include <ctime>
 #include "BrokerDate.h"
 #include "exceptions/DateValidationFailedErrorException.h"
 
 void BrokerDate::checkTimeStamp(string date) {
     long start_millis = chrono::duration_cast<chrono::milliseconds>(chrono::system_clock::now().time_since_epoch()).count();
 
-    //cout << date << "\n";
-    tm t = {};
-    istringstream ss(date);
-    ss >> get_time(&t, "%Y-%m-%dT%H:%M:%S");
-    if (ss.fail()) throw DateValidationFailedErrorException("Invalid date");
 
-    regex reg(".*\\.([0-9]{1,})Z$");
-    smatch m;
-
-    if (!regex_match(date, m, reg)) throw DateValidationFailedErrorException("Invalid Date!");
-    //TODO: Check this..
-    int stamp_millis = stoi(m[1].str());
-    stamp_millis = stamp_millis / 1000;
-    time_t tt1 = mktime(&t) - timezone;
-    long stamp = tt1*1000+stamp_millis;
+    long stamp = gettime(date);
 
     long diff = start_millis - stamp;
 
-    if (diff > 500) throw DateValidationFailedErrorException("Possible Replay Attack. Timestamps do not match!");
+    if (diff > 500 || diff < -500) throw DateValidationFailedErrorException("Possible Replay Attack. Timestamps do not match!");
     return;
 
 }
@@ -52,4 +38,43 @@ string BrokerDate::getCurrentTimeStamp() {
     //cout << now_secs << " " << now_micros << " " << ss.str();
     //return "123456789";
     return ss.str();
+}
+
+long BrokerDate::gettime(string input){
+    tm t = {};
+    regex reg("([0-9]{4})-([0-9]{2})-([0-9]{2})T([0-9]{2})\\:([0-9]{2})\\:([0-9]{2})\\.([0-9]{3,6})Z");
+    smatch m;
+    if (!regex_match(input, m, reg)) throw DateValidationFailedErrorException("Invalid Date!");
+
+    int year = stoi(m[1].str());
+    int month = stoi(m[2].str());
+    int day = stoi(m[3].str());
+    int hour = stoi(m[4].str());
+    int minute = stoi(m[5].str());
+    int second = stoi(m[6].str());
+    int millis = stoi(m[7].str());
+
+    if (year < 1900) throw DateValidationFailedErrorException("Invalid Date!");
+    if (month < 1 || month > 12) throw DateValidationFailedErrorException("Invalid Date!");
+    if (day < 1 || day > 31) throw DateValidationFailedErrorException("Invalid Date!");
+    if (hour < 0 || hour > 23) throw DateValidationFailedErrorException("Invalid Date!");
+
+
+    t.tm_year = year-1900;
+    t.tm_mon = month-1;
+    t.tm_mday = day;
+    t.tm_hour = hour;
+    t.tm_min = minute;
+    t.tm_sec = second;
+
+
+    long stamp_millis = millis / 1000;
+    time_t tt1 = mktime(&t) - timezone;
+    long stamp = tt1*1000+stamp_millis;
+
+    return stamp;
+}
+
+string BrokerDate::puttime(long stamp) {
+    return "1234";
 }
