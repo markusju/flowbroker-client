@@ -14,6 +14,10 @@ class BrokerDate {
 public:
     void checkTimeStamp(string date);
     string getCurrentTimeStamp();
+
+private:
+    long gettime(string input);
+    string puttime(long stamp);
 };
 
 
