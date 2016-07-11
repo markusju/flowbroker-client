@@ -29,9 +29,10 @@ BrokerCmdInterface::BrokerCmdInterface(int argc, char **argv) {
 
     cmd.setHelpOption("h", "help", "Print this help page");
 
-    cmd.defineOption("secret", "HMAC secret used to secure the communication with the Broker Server", ArgvParser::OptionRequired | ArgvParser::OptionRequiresValue);
+
     cmd.defineOption("broker-server", "BrokerServer address", ArgvParser::OptionRequired | ArgvParser::OptionRequiresValue);
     cmd.defineOption("broker_port", "BrokerServer port\nDefault: 5653", ArgvParser::OptionRequiresValue);
+    cmd.defineOption("secret", "HMAC secret used to secure the communication with the Broker Server", ArgvParser::OptionRequired | ArgvParser::OptionRequiresValue);
     cmd.defineOption("action", "Defines a traffic action.\nValid actions are: DISCARD, RATELIMIT and WITHDRAW", ArgvParser::OptionRequired | ArgvParser::OptionRequiresValue);
     cmd.defineOption("rate-limit", "Defines the rate at which a traffic aggregate is to be limited\nDefault: 9600", ArgvParser::OptionRequiresValue);
     cmd.defineOption("source", "Defines the source IPv4 prefix for a traffic action:\nExample: 8.8.8.8/32", ArgvParser::OptionRequired | ArgvParser::OptionRequiresValue);
@@ -41,6 +42,7 @@ BrokerCmdInterface::BrokerCmdInterface(int argc, char **argv) {
     cmd.defineOption("destination-port", "", ArgvParser::OptionRequiresValue);
     cmd.defineOption("source-port", "", ArgvParser::OptionRequiresValue);
     cmd.defineOption("protocol", "", ArgvParser::OptionRequiresValue);
+    cmd.defineOption("packet-length", "", ArgvParser::OptionRequiresValue);
 
 
     // finally parse and handle return codes (display help etc...)
@@ -66,6 +68,7 @@ BrokerCmdInterface::BrokerCmdInterface(int argc, char **argv) {
     if (cmd.foundOption("destination-port")) destination_port = cmd.optionValue("destination-port");
     if (cmd.foundOption("source-port")) source_port = cmd.optionValue("source-port");
     if (cmd.foundOption("protocol")) protocol = cmd.optionValue("protocol");
+    if (cmd.foundOption("packet-length")) packet_length = cmd.optionValue("packet-length");
 
     this->generateFlowRoute();
 
@@ -142,6 +145,10 @@ void BrokerCmdInterface::generateFlowRoute() {
 
     if (!protocol.empty()) {
         flowRoute->setProtocol(new Protocol(protocol));
+    }
+
+    if (!packet_length.empty()) {
+        flowRoute->setPacket_length(new PacketLength(packet_length));
     }
 
 }

@@ -11,7 +11,7 @@ void PortExpression::analyzeElement(string element) {
     string input = stringHelper::trim(element);
 
     if (numHelper::is_number(input)) {
-        if (getTokens().size() != 1) throw FlowRouteException("Invalid Expression");
+        if (getTokens().size() != 1) throw FlowRouteException("Invalid Port Expression");
         checkPortNumber(stoi(input));
         return;
     }

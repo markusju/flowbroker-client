@@ -7,9 +7,16 @@
 
 
 #include "types/AbstractFlowRouteField.h"
+#include "expressions/PacketLengthExpression.h"
 
-class PacketLength : AbstractFlowRouteField {
-    PacketLength(string input);
+class PacketLength : public AbstractFlowRouteField {
+
+public:
+    PacketLength(string value);
+    string getKey() const;
+private:
+    PacketLengthExpression packetLengthExpression;
+
 };
 
 
