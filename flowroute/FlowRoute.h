@@ -17,6 +17,9 @@
 #include "fields/DestinationPort.h"
 #include "fields/SourcePort.h"
 #include "fields/PacketLength.h"
+#include "fields/Fragment.h"
+#include "fields/DSCP.h"
+#include "fields/TCPFlags.h"
 
 using namespace std;
 
@@ -40,10 +43,10 @@ private:
     DestinationPort* destination_port = NULL; //TODO
     AbstractFlowRouteField* icmp_type = NULL; //TODO
     AbstractFlowRouteField* icmp_code = NULL; //TODO
-    AbstractFlowRouteField* tcp_flags = NULL; //TODO
+    TCPFlags* tcp_flags = NULL; //TODO
     PacketLength* packet_length = NULL;
-    AbstractFlowRouteField* fragment = NULL; //TODO
-    AbstractFlowRouteField* dscp = NULL; //TODO
+    Fragment* fragment = NULL; //TODO
+    DSCP* dscp = NULL; //TODO
 
     AbstractFlowRouteAction* filter_action = NULL;
 
@@ -138,6 +141,46 @@ public:
 
     void setPacket_length(PacketLength *packet_length) {
         FlowRoute::packet_length = packet_length;
+    }
+
+    DSCP *getDscp() const {
+        return dscp;
+    }
+
+    void setDscp(DSCP *dscp) {
+        FlowRoute::dscp = dscp;
+    }
+
+    Fragment *getFragment() const {
+        return fragment;
+    }
+
+    void setFragment(Fragment *fragment) {
+        FlowRoute::fragment = fragment;
+    }
+
+    TCPFlags *getTcp_flags() const {
+        return tcp_flags;
+    }
+
+    void setTcp_flags(TCPFlags *tcp_flags) {
+        FlowRoute::tcp_flags = tcp_flags;
+    }
+
+    AbstractFlowRouteField *getIcmp_code() const {
+        return icmp_code;
+    }
+
+    void setIcmp_code(AbstractFlowRouteField *icmp_code) {
+        FlowRoute::icmp_code = icmp_code;
+    }
+
+    AbstractFlowRouteField *getIcmp_type() const {
+        return icmp_type;
+    }
+
+    void setIcmp_type(AbstractFlowRouteField *icmp_type) {
+        FlowRoute::icmp_type = icmp_type;
     }
 
     FlowRoute();

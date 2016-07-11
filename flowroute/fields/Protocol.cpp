@@ -6,19 +6,15 @@
 #include <algorithm>
 #include "../exceptions/FlowRouteException.h"
 
-Protocol::Protocol(set<string> setValue) : AbstractFlowRouteField(setValue) {
-    if (std::includes(this->allowedProt.begin(), this->allowedProt.end(),
-                      setValue.begin(), setValue.end())) {
-        return;
-    }
-
-    throw FlowRouteException("Invalid values for FlowRoute Protocol parameter!");
-}
-
-
 
 string Protocol::getKey() const {
     return "Protocol";
 }
 
-Protocol::Protocol(string value) : Protocol(set<string> {value}) {}
+Protocol::Protocol(string value) : AbstractSetOfThings(value) {
+    this->checkValue();
+}
+
+set<string> Protocol::getThings() {
+    return {"tcp", "udp"};
+}

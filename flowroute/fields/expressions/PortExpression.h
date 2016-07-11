@@ -16,8 +16,8 @@ public:
 
 protected:
     void analyzeElement(string element);
-    void checkPortNumber(int port);
-    void checkPrefix(char prefix);
+    virtual void checkPortNumber(int port);
+    virtual void checkPrefix(char prefix);
 
 };
 

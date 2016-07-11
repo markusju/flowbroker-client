@@ -7,18 +7,18 @@
 
 
 #include "types/AbstractFlowRouteField.h"
+#include "AbstractSetOfThings.h"
 #include <string>
 
-class Protocol : public AbstractFlowRouteField {
-
-    const vector<string> allowedProt = {"tcp", "udp"};
-
+class Protocol: public AbstractSetOfThings{
 public:
-    string getKey() const;
-    Protocol(set<string> setValue);
     Protocol(string value);
+    string getKey() const;
 
+protected:
+    set<string> getThings();
 };
+
 
 
 #endif //BROKER_PROTOCOL_CLIENT_PROTOCOL_H

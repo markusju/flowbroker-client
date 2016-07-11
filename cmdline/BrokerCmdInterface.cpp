@@ -10,6 +10,8 @@
 #include "exceptions/BrokerCmdInterfaceValueErrorException.h"
 #include "../flowroute/fields/SourcePort.h"
 #include "../flowroute/fields/WITHDRAW.h"
+#include "../flowroute/fields/ICMPCode.h"
+#include "../flowroute/fields/ICMPType.h"
 
 
 BrokerCmdInterface::BrokerCmdInterface(int argc, char **argv) {
@@ -43,6 +45,11 @@ BrokerCmdInterface::BrokerCmdInterface(int argc, char **argv) {
     cmd.defineOption("source-port", "", ArgvParser::OptionRequiresValue);
     cmd.defineOption("protocol", "", ArgvParser::OptionRequiresValue);
     cmd.defineOption("packet-length", "", ArgvParser::OptionRequiresValue);
+    cmd.defineOption("fragment", "", ArgvParser::OptionRequiresValue);
+    cmd.defineOption("dscp", "", ArgvParser::OptionRequiresValue);
+    cmd.defineOption("tcp-flags", "", ArgvParser::OptionRequiresValue);
+    cmd.defineOption("icmp-type", "", ArgvParser::OptionRequiresValue);
+    cmd.defineOption("icmp-code", "", ArgvParser::OptionRequiresValue);
 
 
     // finally parse and handle return codes (display help etc...)
@@ -69,6 +76,12 @@ BrokerCmdInterface::BrokerCmdInterface(int argc, char **argv) {
     if (cmd.foundOption("source-port")) source_port = cmd.optionValue("source-port");
     if (cmd.foundOption("protocol")) protocol = cmd.optionValue("protocol");
     if (cmd.foundOption("packet-length")) packet_length = cmd.optionValue("packet-length");
+    if (cmd.foundOption("fragment")) fragment = cmd.optionValue("fragment");
+    if (cmd.foundOption("dscp")) dscp = cmd.optionValue("dscp");
+    if (cmd.foundOption("tcp-flags")) tcp_flags = cmd.optionValue("tcp-flags");
+    if (cmd.foundOption("icmp-type")) icmp_type = cmd.optionValue("icmp-type");
+    if (cmd.foundOption("icmp-code")) icmp_code = cmd.optionValue("icmp-code");
+
 
     this->generateFlowRoute();
 
@@ -149,6 +162,26 @@ void BrokerCmdInterface::generateFlowRoute() {
 
     if (!packet_length.empty()) {
         flowRoute->setPacket_length(new PacketLength(packet_length));
+    }
+
+    if (!fragment.empty()) {
+        flowRoute->setFragment(new Fragment(fragment));
+    }
+
+    if (!dscp.empty()) {
+        flowRoute->setDscp(new DSCP(dscp));
+    }
+
+    if (!tcp_flags.empty()) {
+        flowRoute->setTcp_flags(new TCPFlags(tcp_flags));
+    }
+
+    if (!icmp_type.empty()) {
+        flowRoute->setIcmp_type(new ICMPType(icmp_type));
+    }
+
+    if (!icmp_code.empty()) {
+        flowRoute->setIcmp_code(new ICMPCode(icmp_code));
     }
 
 }

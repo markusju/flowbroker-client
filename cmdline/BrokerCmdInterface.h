@@ -52,6 +52,11 @@ private:
     string source_port;
     string protocol;
     string packet_length;
+    string fragment;
+    string dscp;
+    string tcp_flags;
+    string icmp_type;
+    string icmp_code;
 
 
 };

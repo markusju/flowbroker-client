@@ -10,6 +10,8 @@
 #include "protocol/BrokerProtocol.h"
 #include "cmdline/BrokerCmdInterface.h"
 #include "protocol/security/MessageAuthenticationCode.h"
+#include "flowroute/fields/Fragment.h"
+#include "flowroute/fields/TCPFlags.h"
 
 
 
@@ -21,6 +23,7 @@ using namespace std;
 
 int main(int argc, char** argv) {
 
+    TCPFlags a("rst");
 
     //for(int i =0;i<10000;i++)
     try {
