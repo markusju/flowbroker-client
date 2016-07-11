@@ -3,6 +3,7 @@
 //
 
 #include "AbstractFlowRouteField.h"
+#include "../../../helper/stringHelper.h"
 
 string AbstractFlowRouteField::toString() const {
     return this->getKey() + ": " +  this->getValue();
@@ -11,7 +12,11 @@ string AbstractFlowRouteField::toString() const {
 
 AbstractFlowRouteField::AbstractFlowRouteField(string value) {
     if (value.empty()) return;
-    this->setValue.insert(value);
+    vector<string> elems = stringHelper::split(value,';');
+
+    for (auto el : elems) {
+        setValue.insert(el);
+    }
 }
 
 

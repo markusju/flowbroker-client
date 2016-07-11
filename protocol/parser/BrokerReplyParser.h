@@ -14,6 +14,9 @@ using namespace std;
 class BrokerReplyParser {
 public:
     BrokerReplyParser();
+    /**
+     * Evaluates a reply int the Broker Protocol
+     */
     BrokerReply evaluate(string input);
 };
 

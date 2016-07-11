@@ -45,11 +45,4 @@ namespace stringHelper {
     }
 
 
-
-
-
-
-
-
-
 }

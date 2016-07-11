@@ -27,7 +27,7 @@ public:
     bool conn(string address, int port);
     void disconn();
     bool send_data(string data);
-    string receive(int);
+    string receive(int size);
 };
 
 
