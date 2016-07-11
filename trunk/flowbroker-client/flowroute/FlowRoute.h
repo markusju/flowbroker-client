@@ -16,6 +16,7 @@
 #include "fields/Port.h"
 #include "fields/DestinationPort.h"
 #include "fields/SourcePort.h"
+#include "fields/PacketLength.h"
 
 using namespace std;
 
@@ -40,7 +41,7 @@ private:
     AbstractFlowRouteField* icmp_type = NULL; //TODO
     AbstractFlowRouteField* icmp_code = NULL; //TODO
     AbstractFlowRouteField* tcp_flags = NULL; //TODO
-    AbstractFlowRouteField* packet_length = NULL; //TODO
+    PacketLength* packet_length = NULL;
     AbstractFlowRouteField* fragment = NULL; //TODO
     AbstractFlowRouteField* dscp = NULL; //TODO
 
@@ -128,6 +129,15 @@ public:
 
     void setSource_port(SourcePort *source_port) {
         FlowRoute::source_port = source_port;
+    }
+
+
+    PacketLength *getPacket_length() const {
+        return packet_length;
+    }
+
+    void setPacket_length(PacketLength *packet_length) {
+        FlowRoute::packet_length = packet_length;
     }
 
     FlowRoute();

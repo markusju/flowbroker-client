@@ -51,6 +51,7 @@ private:
     string destination_port;
     string source_port;
     string protocol;
+    string packet_length;
 
 
 };

@@ -3,3 +3,11 @@
 //
 
 #include "PacketLength.h"
+
+PacketLength::PacketLength(string value) : AbstractFlowRouteField(value) {
+    packetLengthExpression.analyze(setValue);
+}
+
+string PacketLength::getKey() const {
+    return "Packet-Length";
+}
