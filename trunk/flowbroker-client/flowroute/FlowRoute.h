@@ -20,6 +20,8 @@
 #include "fields/Fragment.h"
 #include "fields/DSCP.h"
 #include "fields/TCPFlags.h"
+#include "fields/ICMPCode.h"
+#include "fields/ICMPType.h"
 
 using namespace std;
 
@@ -41,8 +43,8 @@ private:
     Port* port = NULL; //TODO
     SourcePort* source_port = NULL; //TODO
     DestinationPort* destination_port = NULL; //TODO
-    AbstractFlowRouteField* icmp_type = NULL; //TODO
-    AbstractFlowRouteField* icmp_code = NULL; //TODO
+    ICMPType* icmp_type = NULL; //TODO
+    ICMPCode* icmp_code = NULL; //TODO
     TCPFlags* tcp_flags = NULL; //TODO
     PacketLength* packet_length = NULL;
     Fragment* fragment = NULL; //TODO
@@ -167,19 +169,19 @@ public:
         FlowRoute::tcp_flags = tcp_flags;
     }
 
-    AbstractFlowRouteField *getIcmp_code() const {
+    ICMPCode *getIcmp_code() const {
         return icmp_code;
     }
 
-    void setIcmp_code(AbstractFlowRouteField *icmp_code) {
+    void setIcmp_code(ICMPCode *icmp_code) {
         FlowRoute::icmp_code = icmp_code;
     }
 
-    AbstractFlowRouteField *getIcmp_type() const {
+    ICMPType *getIcmp_type() const {
         return icmp_type;
     }
 
-    void setIcmp_type(AbstractFlowRouteField *icmp_type) {
+    void setIcmp_type(ICMPType *icmp_type) {
         FlowRoute::icmp_type = icmp_type;
     }
 
