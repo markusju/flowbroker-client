@@ -6,6 +6,7 @@
 #define BROKER_PROTOCOL_CLIENT_PORTEXPRESSION_H
 
 
+#include <set>
 #include "NumberRange.h"
 
 class PortExpression : public NumberRange {

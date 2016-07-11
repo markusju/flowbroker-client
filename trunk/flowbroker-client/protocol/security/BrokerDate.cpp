@@ -65,9 +65,7 @@ long BrokerDate::gettime(string input){
     return stamp;
 }
 
-/**
- * Translates a microseconds timestamp to an ISO 8601 compliant string
- */
+
 string BrokerDate::puttime(long stamp) {
     time_t now_secs = stamp / 1000000;
     char buffer[64];

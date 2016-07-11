@@ -17,6 +17,11 @@ public:
 
 private:
     long gettime(string input);
+    /**
+     * Generates a ISO 8601 compliant string representing a timestamp in microseconds.
+     *
+     * @param stamp
+     */
     string puttime(long stamp);
 };
 

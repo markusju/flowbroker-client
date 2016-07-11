@@ -22,3 +22,10 @@ void NumberRange::analyze(string input) {
 vector<string> NumberRange::getTokens() {
     return tokens;
 }
+
+void NumberRange::analyze(set<string> input) {
+    for (auto el : input) {
+        analyze(el);
+    }
+
+}
