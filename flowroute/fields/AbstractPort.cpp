@@ -5,5 +5,6 @@
 #include "AbstractPort.h"
 
 AbstractPort::AbstractPort(string value) : AbstractFlowRouteField(value) {
+    //Analyzes the already processesed string...
     portExpression.analyze(setValue);
 }
