@@ -21,4 +21,4 @@ string Protocol::getKey() const {
     return "Protocol";
 }
 
-Protocol::Protocol(string value) : AbstractFlowRouteField(value) {}
+Protocol::Protocol(string value) : Protocol(set<string> {value}) {}
