@@ -34,21 +34,21 @@ public:
     }
 
     void addRequestArgument(string argument) {
-        this->requestArguments.insert(argument);
+        this->requestArguments.push_back(argument);
     }
 
     string getRequestMethod() const {
         return requestMethod;
     }
 
-    set<string> getRequestArguments() const {
+    vector<string> getRequestArguments() const {
         return requestArguments;
     }
 
 
 private:
     string requestMethod;
-    set<string> requestArguments;
+    vector<string> requestArguments;
     vector<pair<string, string>> parameters;
 
 

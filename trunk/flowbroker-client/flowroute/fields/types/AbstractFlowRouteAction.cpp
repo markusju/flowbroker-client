@@ -3,22 +3,16 @@
 //
 
 #include "AbstractFlowRouteAction.h"
+#include "../../../helper/stringHelper.h"
 
 
 
-string AbstractFlowRouteAction::joinSet(set<string> setValue) const {
-    string out = "";
-    for(auto el : setValue) {
-        out += el + " ";
-    }
-    return out;
-}
 
 
 string AbstractFlowRouteAction::toString() const {
-    return this->getMethod() + " " + joinSet(this->getMethodArguments());
+    return this->getMethod() + " " + stringHelper::joinVector(this->getMethodArguments());
 }
 
-set<string> AbstractFlowRouteAction::getMethodArguments() const {
+vector<string> AbstractFlowRouteAction::getMethodArguments() const {
     return this->methodArguments;
 }

@@ -12,5 +12,5 @@ string DISCARD::getMethod() const {
 
 DISCARD::DISCARD(SourceAddress *sourceAddress) {
     this->sourceAddress = sourceAddress;
-    this->methodArguments.insert(this->sourceAddress->getValue());
+    this->methodArguments.push_back(this->sourceAddress->getValue());
 }

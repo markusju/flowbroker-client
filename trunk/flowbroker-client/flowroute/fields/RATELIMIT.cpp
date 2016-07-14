@@ -14,7 +14,10 @@ RATELIMIT::RATELIMIT(SourceAddress *sourceAddress, int rate) {
     this->rate = rate;
 
 
-    this->methodArguments.insert(to_string(this->rate));
-    this->methodArguments.insert(this->sourceAddress->getValue());
+    // RATELIMIT 9600 8.8.8.8/32
+    // Push_back inserts at the end!!
+
+    this->methodArguments.push_back(to_string(this->rate));
+    this->methodArguments.push_back(this->sourceAddress->getValue());
 
 }
