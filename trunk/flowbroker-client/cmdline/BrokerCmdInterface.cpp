@@ -36,7 +36,7 @@ BrokerCmdInterface::BrokerCmdInterface(int argc, char **argv) {
     cmd.defineOption("broker_port", "BrokerServer port\nDefault: 5653", ArgvParser::OptionRequiresValue);
     cmd.defineOption("secret", "HMAC secret used to secure the communication with the Broker Server", ArgvParser::OptionRequired | ArgvParser::OptionRequiresValue);
     cmd.defineOption("action", "Defines a traffic action.\nValid actions are: DISCARD, RATELIMIT and WITHDRAW", ArgvParser::OptionRequired | ArgvParser::OptionRequiresValue);
-    cmd.defineOption("rate-limit", "Defines the rate at which a traffic aggregate is to be limited\nDefault: 9600", ArgvParser::OptionRequiresValue);
+    cmd.defineOption("ratelimit", "Defines the rate at which a traffic aggregate is to be limited\nDefault: 9600", ArgvParser::OptionRequiresValue);
     cmd.defineOption("source", "Defines the source IPv4 prefix for a traffic action:\nExample: 8.8.8.8/32", ArgvParser::OptionRequired | ArgvParser::OptionRequiresValue);
     cmd.defineOption("destination", "Specifies a destination address for the traffic action.\nExample: 8.8.8.8/32.\nIf not set, this will default to the host's IP-Address.", ArgvParser::OptionRequiresValue);
     cmd.defineOption("expires", "Defines a duration in seconds, after which the FlowSpec is revoked on the broker", ArgvParser::OptionRequiresValue);
