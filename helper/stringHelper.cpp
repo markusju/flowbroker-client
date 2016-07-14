@@ -45,4 +45,19 @@ namespace stringHelper {
     }
 
 
+    string joinSet(set<string> setValue, string separator) {
+        string out = "";
+        for(auto el : setValue) {
+            out += el + separator;
+        }
+        return out;
+    }
+
+    string joinVector(vector<string> vectorValue, string separator) {
+        string out = "";
+        for(auto el : vectorValue) {
+            out += el + separator;
+        }
+        return out;
+    }
 }

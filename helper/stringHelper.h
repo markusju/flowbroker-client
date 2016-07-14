@@ -9,6 +9,7 @@
 #include <vector>
 #include <locale>
 #include <sstream>
+#include <set>
 
 using namespace std;
 
@@ -19,6 +20,8 @@ namespace stringHelper {
     string &ltrim(std::string & str);
     string &rtrim(std::string & str);
     string &trim(std::string &str);
+    string joinSet(set<string> setValue, string separator = " ");
+    string joinVector(vector<string> vectorValue, string separator = " ");
 
 }
 
