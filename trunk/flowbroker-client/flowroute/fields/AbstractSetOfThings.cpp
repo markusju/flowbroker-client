@@ -5,6 +5,7 @@
 
 
 #include "AbstractSetOfThings.h"
+#include <algorithm>
 #include "../exceptions/FlowRouteException.h"
 
 void AbstractSetOfThings::checkValue() {
