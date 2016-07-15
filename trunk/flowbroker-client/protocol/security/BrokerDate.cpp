@@ -20,7 +20,7 @@ void BrokerDate::checkTimeStamp(string date) {
 
     long diff = start_millis - stamp;
 
-    if (diff > 500 || diff < -500) throw DateValidationFailedErrorException("Possible Replay Attack. Timestamps do not match!");
+    if (diff > 500 || diff < -500) throw DateValidationFailedErrorException(("Possible Replay Attack. Timestamps do not match! Offset." + to_string(diff)).c_str());
     return;
 
 }
