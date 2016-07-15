@@ -12,5 +12,15 @@ set(SOURCE_FILES main.cpp client/Client.cpp client/Client.h flowroute/FlowRoute.
 
 add_executable(broker_client ${SOURCE_FILES})
 
-install(TARGETS broker_client DESTINATION bin)
+install(TARGETS broker_client DESTINATION /usr/bin)
+
+set(CPACK_GENERATOR "DEB")
+set(CPACK_PACKAGE_VERSION_MAJOR "0")
+set(CPACK_PACKAGE_VERSION_MINOR "2")
+set(CPACK_PACKAGE_VERSION_PATCH "0")
+set(CPACK_PACKAGE_DESCRIPTION "FlowSpec Broker Client")
+set(CPACK_PACKAGE_CONTACT "Markus JUNGBLUTH markus.jungbluth@gmail.com")
+#set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "${CMAKE_CURRENT_SOURCE_DIR}/Debian/postinst")
+
+
 INCLUDE(CPack)
