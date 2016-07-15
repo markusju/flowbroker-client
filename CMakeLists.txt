@@ -12,7 +12,7 @@ set(SOURCE_FILES main.cpp client/Client.cpp client/Client.h flowroute/FlowRoute.
 
 add_executable(broker_client ${SOURCE_FILES})
 
-install(TARGETS broker_client DESTINATION /usr/bin)
+install(TARGETS broker_client DESTINATION bin)
 
 set(CPACK_GENERATOR "DEB;TGZ;STGZ")
 set(CPACK_PACKAGE_VERSION_MAJOR "0")
