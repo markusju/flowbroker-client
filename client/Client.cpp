@@ -6,12 +6,13 @@
 #include <netdb.h>
 #include <vector>
 #include "Client.h"
+#include "exceptions/ClientErrorException.h"
 #include <cstring>
 #include <unistd.h>
 
 using namespace std;
 
-bool Client::conn(string address, int port) {
+void Client::conn(string address, int port) {
 //create socket if it is not already created
     if(sock == -1)
     {
@@ -19,7 +20,7 @@ bool Client::conn(string address, int port) {
         sock = socket(AF_INET , SOCK_STREAM , 0);
         if (sock == -1)
         {
-            perror("Could not create socket");
+            throw ClientErrorException("Could not ccreate socket.");
         }
 
     }
@@ -35,9 +36,7 @@ bool Client::conn(string address, int port) {
         if ( (he = gethostbyname( address.c_str() ) ) == NULL)
         {
             //gethostbyname failed
-            herror("gethostbyname");
-
-            return false;
+            throw ClientErrorException("Could not resolve hostname.");
         }
 
         //Cast the h_addr_list to in_addr , since h_addr_list also has the ip address in long format only
@@ -66,11 +65,8 @@ bool Client::conn(string address, int port) {
     //Connect to remote server
     if (connect(sock , (struct sockaddr *)&server , sizeof(server)) < 0)
     {
-        perror("connect failed. Error");
-        return 1;
+        throw ClientErrorException("Could not connect to server.");
     }
-
-    return true;
 }
 
 Client::Client() {
@@ -79,15 +75,13 @@ Client::Client() {
     address = "";
 }
 
-bool Client::send_data(string data) {
+void Client::send_data(string data) {
     //Send some data
     if( send(sock , data.c_str() , strlen( data.c_str() ) , 0) < 0)
     {
-        perror("Send failed : ");
-        return false;
+        throw ClientErrorException("Could not send data.");
     }
-
-    return true;
+    
 }
 
 string Client::receive(int size) {
@@ -96,7 +90,7 @@ string Client::receive(int size) {
     //Receive a reply from the server
     if( recv(sock , buffer.data() , buffer.size() -1 , 0) < 0)
     {
-        puts("recv failed");
+        throw ClientErrorException("Could not receive data.");
     }
 
     string reply(buffer.data());

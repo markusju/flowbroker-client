@@ -18,5 +18,5 @@ string MessageAuthenticationCode::getMacForMessage(string message) {
 
 void MessageAuthenticationCode::checkMacForMessage(string suppliedMac, string message) {
     string calculatedMac = this->getMacForMessage(message);
-    if (calculatedMac != suppliedMac) throw HMACVerificationFailedErrorException("HMAC is incorrect.");
+    if (calculatedMac != suppliedMac) throw HMACVerificationFailedErrorException("Cryptographic Signature sent from the server is invalid. Please make sure you entered the secret correctly.");
 }

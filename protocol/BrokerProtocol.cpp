@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include "BrokerProtocol.h"
+#include "exceptions/BrokerRequestFailedException.h"
 
 BrokerProtocol::BrokerProtocol(BrokerClient *brokerClient, BrokerReplyParser* brokerReplyParser, BrokerReplyEvaluator* brokerReplyEvaluator, BrokerSecurityModule* brokerSecurityModule) {
     this->brokerClient = brokerClient;
@@ -35,9 +36,12 @@ void BrokerProtocol::send(BrokerRequest *request) {
     ReplyCode* code = this->brokerReplyEvaluator->evaluate(&brokerReply);
 
     if (code->isFailed()) {
-        cout << "Your Request failed!" << " " << code->getCode() << " " << code->getDetailedExplanation() << "\n";
+        cerr << "Request failed. FlowSpec could not be installed. " << "[" << code->getCode() << "]" << " [" << code->getStandardMessage() << "]" << "\n";
+        cerr << code->getDetailedExplanation() << "\n\n";
+
+        throw BrokerRequestFailedException("Request failed.");
     } else {
-        cout << "Status: " << code->getCode() << "\n";
+        cout << "FlowSpec successfully installed. [" << code->getCode() << "]" << " [" << code->getStandardMessage() << "]" << "\n";
     }
 
 
