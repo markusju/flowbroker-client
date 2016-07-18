@@ -50,6 +50,7 @@ BrokerCmdInterface::BrokerCmdInterface(int argc, char **argv) {
     cmd.defineOption("tcp-flags", "", ArgvParser::OptionRequiresValue);
     cmd.defineOption("icmp-type", "", ArgvParser::OptionRequiresValue);
     cmd.defineOption("icmp-code", "", ArgvParser::OptionRequiresValue);
+    cmd.defineOption("tolerance", "Defines the tolerance for the replay attack protection in milliseconds. \nThe tolerance is both applied to future and past dates. \nDefault: +/-10000");
 
 
     // finally parse and handle return codes (display help etc...)
@@ -81,6 +82,7 @@ BrokerCmdInterface::BrokerCmdInterface(int argc, char **argv) {
     if (cmd.foundOption("tcp-flags")) tcp_flags = cmd.optionValue("tcp-flags");
     if (cmd.foundOption("icmp-type")) icmp_type = cmd.optionValue("icmp-type");
     if (cmd.foundOption("icmp-code")) icmp_code = cmd.optionValue("icmp-code");
+    if (cmd.foundOption("tolerance")) tolerance = stol(cmd.optionValue("tolerance"));
 
 
     this->generateFlowRoute();

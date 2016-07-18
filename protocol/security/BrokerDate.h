@@ -12,10 +12,15 @@ using namespace std;
 
 class BrokerDate {
 public:
+    BrokerDate(long toleranceMillis);
     void checkTimeStamp(string date);
     string getCurrentTimeStamp();
 
 private:
+
+    long toleranceMillis;
+
+
     long gettime(string input);
     /**
      * Generates a ISO 8601 compliant string representing a timestamp in microseconds.

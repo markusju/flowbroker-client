@@ -13,7 +13,7 @@
 
 class BrokerSecurityModule {
 public:
-    BrokerSecurityModule(string secret);
+    BrokerSecurityModule(string secret, long toleranceMillis);
 
     void validateDate(BrokerReply *brokerReply);
     void validateSignature(BrokerReply *brokerReply);
