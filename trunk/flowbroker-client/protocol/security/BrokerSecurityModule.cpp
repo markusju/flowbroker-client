@@ -18,7 +18,7 @@ void BrokerSecurityModule::validateSignature(BrokerReply *brokerReply) {
     throw HMACVerificationFailedErrorException("No Signature Parameter supplied");
 }
 
-BrokerSecurityModule::BrokerSecurityModule(string secret) : mac(secret) {
+BrokerSecurityModule::BrokerSecurityModule(string secret, long toleranceMillis) : mac(secret), date(toleranceMillis) {
 
 }
 

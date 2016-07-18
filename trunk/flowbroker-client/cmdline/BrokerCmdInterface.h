@@ -29,6 +29,10 @@ public:
         return secret;
     }
 
+    long getTolerance() {
+        return tolerance;
+    }
+
 protected:
     void generateFlowRoute();
 
@@ -36,6 +40,9 @@ private:
     ArgvParser cmd;
 
     FlowRoute* flowRoute;
+
+
+    long tolerance = 10000;
 
     string broker_server;
     string broker_port;
