@@ -27,7 +27,7 @@ public:
 
     /**
      * Returns a list of all parameters.
-     * @return
+     * @return A vector containing a pairs (key, value)
      */
     vector<pair<string, string>> getParameters() const{
         return parameters;
@@ -52,7 +52,7 @@ public:
 
     /**
      * Returns the request method contained in the request.
-     * @return
+     * @return A string with the request method
      */
     string getRequestMethod() const {
         return requestMethod;
@@ -60,7 +60,7 @@ public:
 
     /**
      * Returns all arguments contained in the request.
-     * @return
+     * @return A vector containing all arguments
      */
     vector<string> getRequestArguments() const {
         return requestArguments;

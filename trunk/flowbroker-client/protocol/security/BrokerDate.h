@@ -20,7 +20,7 @@ public:
     void checkTimeStamp(string date);
     /**
      * Returns the current timestamp (ISO 8601)
-     * @return
+     * @return A ISO 8601 compliant timestamp
      */
     string getCurrentTimeStamp();
 

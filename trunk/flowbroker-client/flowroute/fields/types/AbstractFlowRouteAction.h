@@ -14,8 +14,20 @@ using namespace std;
 class AbstractFlowRouteAction {
 public:
 
+    /**
+     * A string containing the method name.
+     * @return
+     */
     virtual string getMethod() const = 0;
+    /**
+     * Returns the method arguments of the FlowRouteAction
+     * @return A vector containing the method arguments
+     */
     virtual vector<string> getMethodArguments() const;
+    /**
+     * Returns a string representation of the FlowRouteAction
+     * @return
+     */
     virtual string toString() const;
 
 protected:

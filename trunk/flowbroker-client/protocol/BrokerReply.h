@@ -14,17 +14,26 @@ class BrokerReply {
 public:
     BrokerReply();
 
+    /**
+     * Returns all parameters of the reply
+     * @return Returns a map containing the key value pairs.
+     */
     map<string, string> getParameters() const{
         return parameters;
     }
 
+    /**
+     * Adds a parameter to the reply
+     * @param key
+     * @param value
+     */
     void addParameter(string key, string value) {
         this->parameters[key] =  value;
     }
 
     /**
      * Returns the message of the reply
-     * @return
+     * @return A string containing the message of the reply
      */
     string getMessage() const {
         return this->message;
@@ -48,7 +57,7 @@ public:
 
     /**
      * Returns the status code of the reply.
-     * @return
+     * @return An integer containing the 3 digit status code
      */
     int getStatusCode() {
         return statusCode;
@@ -57,7 +66,7 @@ public:
     /**
      * Returns a string not containing the Signature parameter.
      * This method is used when verifying the HMAC of a reply.
-     * @return
+     * @return A string that is used by the BrokerSecurityModule
      */
     string toStringForSignatureValidation() const;
 

@@ -20,7 +20,7 @@ void Client::conn(string address, int port) {
         sock = socket(AF_INET , SOCK_STREAM , 0);
         if (sock == -1)
         {
-            throw ClientErrorException("Could not ccreate socket.");
+            throw ClientErrorException("Could not create socket.");
         }
 
     }

@@ -10,6 +10,10 @@
 
 class DSCPExpression : public PortExpression {
 protected:
+    /**
+     * Checks whether the supplied integer is a valid DSCP code
+     * @param port
+     */
     virtual void checkPortNumber(int port);
 
 };

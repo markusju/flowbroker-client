@@ -15,7 +15,15 @@ using namespace std;
 class NumberRange {
 
 public:
+    /**
+     * Analyzes the given input
+     * @param input
+     */
     void analyze(string input);
+    /**
+     * Analyzes the given set of inputs
+     * @param input
+     */
     void analyze(set<string> input);
 protected:
     virtual void analyzeElement(string element) = 0;

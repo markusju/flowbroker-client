@@ -15,7 +15,9 @@ class BrokerReplyParser {
 public:
     BrokerReplyParser();
     /**
-     * Evaluates a reply int the Broker Protocol
+     * Evaluates a string containing the reply from the Broker Server
+     * @param input String containing the reply message
+     * @return A BrokerReply object
      */
     BrokerReply evaluate(string input);
 };

@@ -10,7 +10,11 @@
 using namespace std;
 
 namespace numHelper {
-
+    /**
+     * Checks whether a supplied string contains a number
+     * @param s
+     * @return
+     */
     bool is_number(const string &s);
 
 }
