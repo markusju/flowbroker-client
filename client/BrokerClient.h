@@ -16,6 +16,11 @@ using namespace std;
 class BrokerClient {
 public:
     BrokerClient(string host, int port);
+    /**
+     * Sends a string message over a previously established socket and waits for a string reply.
+     * @param request
+     * @return A string containg the reply from the remote station
+     */
     string sendRequest(string request);
 
 protected:

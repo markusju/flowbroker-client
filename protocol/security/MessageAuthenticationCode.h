@@ -17,7 +17,7 @@ public:
     /**
      * Returns a Message Authentication Code (HMAC) for the supplied message.
      * @param message Message the HMAC will be computed for.
-     * @return
+     * @return A String containing the HMAC for the supplied message
      */
     string getMacForMessage(string message);
 

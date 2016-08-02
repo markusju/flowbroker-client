@@ -17,18 +17,34 @@ public:
     BrokerCmdInterface(int argc, char* argv[]);
     FlowRoute* getFlowRoute();
 
+    /**
+     * Returns a string containing the host name of the broker server
+     * @return
+     */
     string getBrokerServer() {
         return broker_server;
     }
 
+    /**
+     * Returns the defined Port
+     * @return An integer containing the port number
+     */
     int getBrokerServerPort() {
         return stoi(broker_port);
     }
 
+    /**
+     * Returns the defined secret
+     * @return The secret defined by the user
+     */
     string getSecret() {
         return secret;
     }
 
+    /**
+     * Returns the defined tolerance for replay protection
+     * @return A long containing the tolerance value in milliseconds
+     */
     long getTolerance() {
         return tolerance;
     }
