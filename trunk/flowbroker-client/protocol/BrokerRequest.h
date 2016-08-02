@@ -25,22 +25,43 @@ public:
 
     string toString() const;
 
+    /**
+     * Returns a list of all parameters.
+     * @return
+     */
     vector<pair<string, string>> getParameters() const{
         return parameters;
     }
 
+    /**
+     * Adds a parameter to the request.
+     * @param key Key value of the parameter
+     * @param value Corresponding value
+     */
     void addParameter(string key, string value) {
         this->parameters.push_back(make_pair(key, value));
     }
 
+    /**
+     * Adds an argument to the request.
+     * @param argument
+     */
     void addRequestArgument(string argument) {
         this->requestArguments.push_back(argument);
     }
 
+    /**
+     * Returns the request method contained in the request.
+     * @return
+     */
     string getRequestMethod() const {
         return requestMethod;
     }
 
+    /**
+     * Returns all arguments contained in the request.
+     * @return
+     */
     vector<string> getRequestArguments() const {
         return requestArguments;
     }

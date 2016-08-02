@@ -16,6 +16,10 @@
 class BrokerProtocol {
 public:
     BrokerProtocol(BrokerClient* brokerClient, BrokerReplyParser* brokerReplyParser, BrokerReplyEvaluator* brokerReplyEvaluator, BrokerSecurityModule* brokerSecurityModule);
+    /**
+     * Sends a request to the server.
+     * @param request
+     */
     void send(BrokerRequest* request);
 private:
     BrokerClient* brokerClient;
