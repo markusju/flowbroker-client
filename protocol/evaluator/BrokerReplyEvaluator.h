@@ -14,6 +14,11 @@ class BrokerReplyEvaluator {
 
 public:
     BrokerReplyEvaluator();
+    /**
+     * Evaluates a BrokerReply and returns a ReplyCode object (Pointer)
+     * @param brokerReply
+     * @return
+     */
     ReplyCode* evaluate(BrokerReply* brokerReply);
 };
 

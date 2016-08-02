@@ -13,7 +13,15 @@ using namespace std;
 class BrokerDate {
 public:
     BrokerDate(long toleranceMillis);
+    /**
+     * Checks whether the supplied timestamp (ISO 8601) is within the preset tolerance.
+     * @param date
+     */
     void checkTimeStamp(string date);
+    /**
+     * Returns the current timestamp (ISO 8601)
+     * @return
+     */
     string getCurrentTimeStamp();
 
 private:
@@ -24,7 +32,6 @@ private:
     long gettime(string input);
     /**
      * Generates a ISO 8601 compliant string representing a timestamp in microseconds.
-     *
      * @param stamp
      */
     string puttime(long stamp);

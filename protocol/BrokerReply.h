@@ -22,22 +22,43 @@ public:
         this->parameters[key] =  value;
     }
 
+    /**
+     * Returns the message of the reply
+     * @return
+     */
     string getMessage() const {
         return this->message;
     }
 
+    /**
+     * Sets the message of the reply.
+     * @param message
+     */
     void setMessage(string message) {
         this->message = message;
     }
 
+    /**
+     * Sets the status code of the reply.
+     * @param statusCode
+     */
     void setStatusCode(int statusCode) {
         this->statusCode = statusCode;
     }
 
+    /**
+     * Returns the status code of the reply.
+     * @return
+     */
     int getStatusCode() {
         return statusCode;
     }
 
+    /**
+     * Returns a string not containing the Signature parameter.
+     * This method is used when verifying the HMAC of a reply.
+     * @return
+     */
     string toStringForSignatureValidation() const;
 
 private:

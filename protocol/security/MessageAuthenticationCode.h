@@ -14,7 +14,18 @@ class MessageAuthenticationCode {
 public:
     MessageAuthenticationCode(string secret);
 
+    /**
+     * Returns a Message Authentication Code (HMAC) for the supplied message.
+     * @param message Message the HMAC will be computed for.
+     * @return
+     */
     string getMacForMessage(string message);
+
+    /**
+     * Validates a supplied HMAC against a message.
+     * @param suppliedMac
+     * @param message
+     */
     void checkMacForMessage(string suppliedMac, string message);
 
 private:
