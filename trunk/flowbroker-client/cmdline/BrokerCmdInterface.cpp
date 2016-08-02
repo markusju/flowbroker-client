@@ -23,7 +23,7 @@ BrokerCmdInterface::BrokerCmdInterface(int argc, char **argv) {
 
 
     // init
-    cmd.setIntroductoryDescription("BrokerProtocol Denial of Service mitigation client.\nUsage:");
+    cmd.setIntroductoryDescription("broker_client:\nUsage:");
 
     //define error codes
     cmd.addErrorCode(0, "Success");
@@ -40,17 +40,17 @@ BrokerCmdInterface::BrokerCmdInterface(int argc, char **argv) {
     cmd.defineOption("source", "Defines the source IPv4 prefix for a traffic action:\nExample: 8.8.8.8/32", ArgvParser::OptionRequired | ArgvParser::OptionRequiresValue);
     cmd.defineOption("destination", "Specifies a destination address for the traffic action.\nExample: 8.8.8.8/32.\nIf not set, this will default to the host's IP-Address.", ArgvParser::OptionRequiresValue);
     cmd.defineOption("expires", "Defines a duration in seconds, after which the FlowSpec is revoked on the broker", ArgvParser::OptionRequiresValue);
-    cmd.defineOption("port", "Defines a Source AND Destination Port. Example: =80&=90 or >80&<120", ArgvParser::OptionRequiresValue);
-    cmd.defineOption("destination-port", "", ArgvParser::OptionRequiresValue);
-    cmd.defineOption("source-port", "", ArgvParser::OptionRequiresValue);
-    cmd.defineOption("protocol", "", ArgvParser::OptionRequiresValue);
-    cmd.defineOption("packet-length", "", ArgvParser::OptionRequiresValue);
-    cmd.defineOption("fragment", "", ArgvParser::OptionRequiresValue);
-    cmd.defineOption("dscp", "", ArgvParser::OptionRequiresValue);
-    cmd.defineOption("tcp-flags", "", ArgvParser::OptionRequiresValue);
-    cmd.defineOption("icmp-type", "", ArgvParser::OptionRequiresValue);
-    cmd.defineOption("icmp-code", "", ArgvParser::OptionRequiresValue);
-    cmd.defineOption("tolerance", "Defines the tolerance for the replay attack protection in milliseconds. \nThe tolerance is both applied to future and past dates. \nDefault: +/-10000");
+    cmd.defineOption("port", "Defines a source AND destination port. \n Example: =80&=90 or >80&<120", ArgvParser::OptionRequiresValue);
+    cmd.defineOption("destination-port", "Defines a destination port. \n Example: =80&=90 or >80&<120", ArgvParser::OptionRequiresValue);
+    cmd.defineOption("source-port", "Defines a source port. \n Example: =80&=90 or >80&<120", ArgvParser::OptionRequiresValue);
+    cmd.defineOption("protocol", "Defines one or many Layer 4 protocols as match criteria. \n Valid protocols are: tcp, udp", ArgvParser::OptionRequiresValue);
+    cmd.defineOption("packet-length", "Defines a oacket length or packet length range as match criteria. \n Example: 5000;>50&<2000", ArgvParser::OptionRequiresValue);
+    cmd.defineOption("fragment", "Defines one or many properties to select fragmented packets. \n Valid properties are: \n not-a-fragment, dont-fragment, is-fragment, first-fragment, last-fragment", ArgvParser::OptionRequiresValue);
+    cmd.defineOption("dscp", "DEfines one or many DSCP or DSCP ranges. \n Example: 10;>13&<24", ArgvParser::OptionRequiresValue);
+    cmd.defineOption("tcp-flags", "Defines one or many TCP-Flags as match criteria. \n Valid Flags are: \n fin, syn, rst, push, ack, urgent", ArgvParser::OptionRequiresValue);
+    cmd.defineOption("icmp-type", "Defines one or many ICMP-Types as match criteria. \n Valid Types are: \n echo-reply, echo-request, info-reply, info-request, mask-reply, mask-request, parameter-problem, redirect, router-advertisement, router-solicit, source-quench, time-exceeded, timestamp, timestamp-reply, unreachable\n ", ArgvParser::OptionRequiresValue);
+    cmd.defineOption("icmp-code", "Defines one or many ICMP-Codes as match criteria. \n Valid Codes are: \n communication-prohibited-by-filtering, destination-host-prohibited, destination-host-unknown, destination-network-unknown, fragmentation-needed, host-precedence-violation, ip-header-bad, network-unreachable, network-unreachable-for-tos, port-unreachable, redirect- for-host,redirect-for-network, redirect-for-tos-and-host, redirect-for-tos-and-net, required- option-missing, source-host-isolated, source-route-failed, ttl-eq-zero-during-reassembly, ttl-eq-zero-during-transit", ArgvParser::OptionRequiresValue);
+    cmd.defineOption("tolerance", "Defines the tolerance for the replay attack protection in milliseconds. \nThe tolerance is both applied to future and past dates. \nDefault: +/-10000", ArgvParser::OptionRequiresValue);
 
 
     // finally parse and handle return codes (display help etc...)
