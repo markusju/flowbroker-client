@@ -12,6 +12,7 @@
 #include "../flowroute/fields/WITHDRAW.h"
 #include "../flowroute/fields/ICMPCode.h"
 #include "../flowroute/fields/ICMPType.h"
+#include "../version.h"
 
 
 BrokerCmdInterface::BrokerCmdInterface(int argc, char **argv) {
@@ -22,8 +23,10 @@ BrokerCmdInterface::BrokerCmdInterface(int argc, char **argv) {
     ratelimit = "9600";
 
 
+
     // init
-    cmd.setIntroductoryDescription("broker_client:\nUsage:");
+    string descr = "broker_client ("+ string(VERSION)+ "):\nUsage:";
+    cmd.setIntroductoryDescription(descr);
 
     //define error codes
     cmd.addErrorCode(0, "Success");
