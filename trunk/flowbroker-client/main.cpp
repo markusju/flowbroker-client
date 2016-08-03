@@ -13,8 +13,8 @@
 #include "flowroute/fields/Fragment.h"
 #include "flowroute/fields/TCPFlags.h"
 #include <stdlib.h>
+#include "version.h"
 
-#define PROGNAME "broker_client"
 /**
  * broker_client 0.1
  *
