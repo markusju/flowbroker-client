@@ -1,8 +1,13 @@
 /**
 \mainpage
 
-This is a simple example of a mainpage you can create yourself.
-Place this inside of a file called `mainpage.dox` and use doxygen.
-If you specified `INPUT` or `FILE_PATTERNS` in your Doxyfile please
-add `.dox` to your file patterns or `mainpage.dox` to your INPUT files.
+The Broker client is the counterpart of the Broker Server and aims at being a simple tool for system administrators to
+allow them to request certain FlowSpec to be installed for protection.
+The client tool is intended to be used with our Broker Server and implements all features supported by the Broker %Protocol.
+
+This manual documents the components of our client reference implementation. You are more than welcome to modify or to improve our work.
+We recommend taking a look at the `main.cpp` to get started. The `main()` entry point gives a compact overview over the different classes used to synthesize requests and analyze the server's responses.
+
+Further this document provides an extensive documentation of the different classes and their attributes and methods, which will help you to quickly understand the inner workings of our client.
+
 */
