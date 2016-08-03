@@ -15,6 +15,10 @@ using namespace CommandLineProcessing;
 class BrokerCmdInterface {
 public:
     BrokerCmdInterface(int argc, char* argv[]);
+    /**
+     * Creates a FlowRoute (FlowSpec) from the configuration.
+     * @return A pointer to a FlowRoute object containing the parameters defined by the user.
+     */
     FlowRoute* getFlowRoute();
 
     /**
